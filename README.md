@@ -34,10 +34,11 @@ e-commerce for services
 |   `/auth/login`  |     `POST`    | Sends login form, redirects to `index` view. (cat.)    |{email, password}|
 |   `/auth/signup` |     `GET`     | Sign up screen. Renders `signup` view.                 |                    |
 |   `/auth/signup` |     `POST`    | Sends signup form and creates User in DB. Redirects to `index` view. (cat.)|{ username, email, password, phone_number, image }|
-|   `/auth/logout` |     `GET`     | Log out screen. Renders `logout` view. Redirects to `login` view. (cat.)|   |
+|   `/auth/logout` |     `GET`     | Log out screen. Redirects to `login` view. (cat.)      |                    |
 |`/categories/:id` |     `GET`     | Specific Category screen. Renders `category` view.     |                    |
 |`/service/create` |     `GET`     | Create Service screen. Renders `service-create` view.  |                    |
 |`/service/create` |     `POST`    | Sends Service form and creates service in DB. Redirects to `user-profile` view.   |{ name, description, price, location, image, user_id, category_id }|
+|`/service/search` |     `GET`     | Search a Service by name. Renders `service-list` view. |                    |
 |`/service/:id/edit`|    `GET`     | Edit Service screen. Renders `service-edit` view.      |                    |
 |`/service/:id/edit`|     `POST`   | Sends edit Service form and update service in DB. Redirects to `user-profile` view.|{ name, description, price, location, image, category_id }|
 |`/service/:id/delete` |   `POST`  | Deletes a Service from DB. Redirects to `user-profile` view.|{ service_id } |
@@ -56,7 +57,7 @@ e-commerce for services
 ### Category.model.js
 ```javascript
 {
-    name: { type: String, enum: [], required: true },
+    name: { type: String, enum: ['Graphics & Design', 'Digital Marketing', 'Writing & Translation', 'Video & Animation', 'Music & Audio', 'Programming & Tech', 'Data', 'Lifestyle'], required: true },
     services_id: [ { type: ObjectId, ref: 'Service' } ]
 }
 ```
@@ -107,6 +108,10 @@ e-commerce for services
 ```
 ## Backlog
 - Style it responsive for bigger screens. Tablet and computer screens.
+- Implement filter options for specific category. eg. Price, alphabetically.
+- Implement social login and signup (Facebook, google, apple).
+- Implement axios at /service/search to avoid refresh page on search.
+- Allow user to recover/change his password through his email.
 
 
 ## Links
