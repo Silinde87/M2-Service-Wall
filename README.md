@@ -79,10 +79,12 @@ e-commerce for services
 {
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    password: { type: String },
     phone_number: { type: String },
     rate: { type: Number, default: 0 },
     image: { type: String, default: "" },
+    linkedIn_id: { type: String },
+    google_id: { type: String }
     bookedServices: [ {
          serviceName: { type: String, required: true },
          servicePrice: { type: String, required: true},
