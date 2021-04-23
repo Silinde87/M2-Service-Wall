@@ -9,7 +9,7 @@
 
 e-commerce for services
 
-## User Stores
+## User Stories
 - **404** - As users, we want to see a nice 404 error page when I go to a page that doesn’t exist so that we know it was our fault. 🙊
 - **500** - As users, we want to see a nice 500 error page when the team behind the app brokes something and it's not our fault. 🦦
 - **Homepage** - As users, we want to be able to access the homepage and select by category service and search by specific service. 🦁
@@ -37,15 +37,15 @@ e-commerce for services
 |   `/auth/logout` |     `GET`     | Log out screen. Redirects to `login` view. (cat.)      |                    |
 |`/categories/:id` |     `GET`     | Specific Category screen. Renders `category` view.     |                    |
 |`/service/create` |     `GET`     | Create Service screen. Renders `service-create` view.  |                    |
-|`/service/create` |     `POST`    | Sends Service form and creates service in DB. Redirects to `user-profile` view.   |{ name, description, price, location, image, user_id, category_id }|
+|`/service/create` |     `POST`    | Sends Service form and creates service in DB. Redirects to `user-profile` view.   |{ name, description, price, location, image, user_id, category }|
 |`/service/search` |     `GET`     | Search a Service by name. Renders `service-list` view. |                    |
 |`/service/:id/edit`|    `GET`     | Edit Service screen. Renders `service-edit` view.      |                    |
-|`/service/:id/edit`|     `POST`   | Sends edit Service form and update service in DB. Redirects to `user-profile` view.|{ name, description, price, location, image, category_id }|
+|`/service/:id/edit`|     `POST`   | Sends edit Service form and update service in DB. Redirects to `user-profile` view.|{ name, description, price, location, image, category }|
 |`/service/:id/delete` |   `POST`  | Deletes a Service from DB. Redirects to `user-profile` view.|{ service_id } |
 |`/service/:id/book`|   `POST`  | Book a Service and update client User's bookedServices and seller User's soldServices from DB. Redirects to `stripe` view. |{ serviceName, servicePrice, serviceUsername, serviceUser_id } |
 |  `/service/:id`  |     `GET`     | Specific Service screen. Renders `service` view.       |                    |
 |`/profile/:id/review`|   `GET`    | Review screen. Renders `review` view.                  |                    |
-|`/profile/:id/review`|   `POST`   | Sends Review form and create Review in DB. Redirects to `index` view.| { username, description, rate,user_id } |
+|`/profile/:id/review`|   `POST`   | Sends Review form and pushes a review to reviews array from User in DB. Redirects to `index` view.| { username, description, rate,user_id } |
 |`/profile/:id/delete`|   `POST`   | Deletes an User from DB. Redirects to `login` view.    |     { user_id }    |
 |`/profile/:id/edit`|     `GET`    | Edit User screen. Renders `user-edit`.                 |                    |
 |`/profile/:id/edit`|     `POST`   | Sends User form and update User in DB. Redirects to `user-profile` view | { username, phone_number, image, password } |
@@ -54,24 +54,20 @@ e-commerce for services
 
 ## Models
 
-### Category.model.js
-```javascript
-{
-    name: { type: String, enum: ['Graphics & Design', 'Digital Marketing', 'Writing & Translation', 'Video & Animation', 'Music & Audio', 'Programming & Tech', 'Data', 'Lifestyle'], required: true },
-    services_id: [ { type: ObjectId, ref: 'Service' } ]
-}
-```
 ### Service.model.js
 ```javascript
 {
     name: { type: String, required: true },
     description: { type: String, required: true },
-    price: { type: Number, required: true },
+    price: { type: Number, min: 1, required: true },
     location: [ { type: String, required: true } ],
     publication_date: {type: Date, default: 'timeStamp', required: true }, //maybe not a field
     image: { type: String, default: "" },
     user_id: { type: ObjectId, ref: 'User', required: true },
-    category_id: { type: ObjectId, ref: 'Category', required: true }
+    category: { 
+        name: { type: String, required: true },
+        image: { type: String, required: true }
+    }
 }
 ```
 ### User.model.js
@@ -79,10 +75,10 @@ e-commerce for services
 {
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String },
+    password: { type: String, minLength: 6 },
     phone_number: { type: String },
-    rate: { type: Number, default: 0 },
-    image: { type: String, default: "" },
+    rate: { type: Number, min: 0, max: 5, default: 0 },
+    image: { type: String, default: "https://res.cloudinary.com/dkevcmz3i/image/upload/v1619125766/Service-Wall/user_avatar_xyyphc.png" },
     linkedIn_id: { type: String },
     google_id: { type: String }
     bookedServices: [ {
@@ -95,19 +91,16 @@ e-commerce for services
          serviceName: type: String, required: true,
          servicePrice: type: String, required: true,
          serviceUsername: type: String, required: true
+    }, default: [] ],
+    reviews: [ {
+        username: { type: String, required: true },
+        description: { type: String, required: true },
+        rate: { type: number, min: 0, max: 5, required: true },
+        date: { type: Date, default: 'timeStamp', required: true }, //maybe not a field   
     }, default: [] ]
 }
 ```
-### Review.model.js
-```javascript
-{
-    username: {type: String, required: true },
-    description: { type: String, required: true },
-    rate: { type: number, required: true },
-    date: { type: Date, default: 'timeStamp', required: true }, //maybe not a field
-    user_id: { type: ObjectID, ref: 'User' }
-}
-```
+
 ## Backlog
 - Style it responsive for bigger screens. Tablet and computer screens.
 - Implement filter options for specific category. eg. Price, alphabetically.
