@@ -1,5 +1,5 @@
-const User = require("../models/User.model");
-const Service = require("../models/Service.model");
+const User = require("../../models/User.model");
+const Service = require("../../models/Service.model");
 const mongoose = require("mongoose");
 const DB_URL = "mongodb://localhost/m2-service-wall";
 
@@ -16,20 +16,20 @@ mongoose
 	.then(() => {
 		console.log("Connected to database. Creating seed info");
 		//Seed the users first, then comment.
-		User.insertMany(users)
-			.then((users) => {
-				console.log(`${users.length} users inserted`);
-			})
-			.then(() => {
-				mongoose.connection.close();
-			});
-		//Get the users id and then seed the services
-		// Service.insertMany(services)
-		// 	.then((services) => {
-		// 		console.log(`${services.length} users inserted`);
+		// User.insertMany(users)
+		// 	.then((users) => {
+		// 		console.log(`${users.length} users inserted`);
 		// 	})
 		// 	.then(() => {
 		// 		mongoose.connection.close();
 		// 	});
+		//Get the users id and then seed the services
+		Service.insertMany(services)
+			.then((services) => {
+				console.log(`${services.length} services inserted`);
+			})
+			.then(() => {
+				mongoose.connection.close();
+			});
 	})
 	.catch((error) => console.error(error));
