@@ -1,36 +1,77 @@
-body,html {
-  padding: 0px;
-  margin: 0px;
-  width: 100%;
-  height: 100%;
-  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* RESETS */
+body,
+html {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	font-size: 10px;
 }
-body{
-  display: flex;
-  flex-direction: column;
-}
-p, h1 {
-  margin: 0;
-  padding: 0;
+p,
+h1 {
+	margin: 0;
+	padding: 0;
 }
 
-a {
-  color: #00B7FF;
+/* COMMON STYLES */
+body {
+	display: flex;
+	flex-direction: column;
 }
-main{
-  flex: 1;
+main,
+#categories-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-footer{
-  position: sticky;
-  width: 100%;
-  bottom: 0;
-  height: 50px;
-  display: flex;
-  align-items: center;
+main {
+	flex: 1;
 }
-footer .row{
-  width: 100%;
+
+/* NAV BAR STYLES */
+.navbar {
+	height: 70px;
+	margin-bottom: 20px;
 }
-.footer-icon{
-  height: 40px;
+
+/* INDEX STYLES */
+#categories-container {
+	width: 80%;
+	flex-wrap: wrap;
+}
+.category-icon {
+	height: 100px;
+	margin: 20px;
+}
+
+/* SERVICES LIST STYLES */
+#services-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.service-box {
+	width: 150px !important;
+	margin: 7px;
+}
+.service-box img {
+	height: 150px;
+	object-fit: cover;
+}
+
+/* FOOTER STYLES */
+footer {
+	position: sticky;
+	width: 100%;
+	bottom: 0;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	margin-top: 20px;
+}
+footer .row {
+	width: 100%;
+}
+.footer-icon {
+	height: 40px;
 }
