@@ -37,10 +37,10 @@ e-commerce for services
 |   `/auth/logout` |     `GET`     | Log out screen. Redirects to `login` view. (cat.)      |                    |
 |`/categories/:id` |     `GET`     | Specific Category screen. Renders `category` view.     |                    |
 |`/service/create` |     `GET`     | Create Service screen. Renders `service-create` view.  |                    |
-|`/service/create` |     `POST`    | Sends Service form and creates service in DB. Redirects to `user-profile` view.   |{ name, description, price, location, image, user_id, category }|
+|`/service/create` |     `POST`    | Sends Service form and creates service in DB. Redirects to `user-profile` view.   |{ user.username, user.image, description, price, location, image, user_id, category }|
 |`/service/search` |     `GET`     | Search a Service by name. Renders `service-list` view. |                    |
 |`/service/:id/edit`|    `GET`     | Edit Service screen. Renders `service-edit` view.      |                    |
-|`/service/:id/edit`|     `POST`   | Sends edit Service form and update service in DB. Redirects to `user-profile` view.|{ name, description, price, location, image, category }|
+|`/service/:id/edit`|     `POST`   | Sends edit Service form and update service in DB. Redirects to `user-profile` view.|{ user.username, user.image, description, price, location, image, category }|
 |`/service/:id/delete` |   `POST`  | Deletes a Service from DB. Redirects to `user-profile` view.|{ service_id } |
 |`/service/:id/book`|   `POST`  | Book a Service and update client User's bookedServices and seller User's soldServices from DB. Redirects to `stripe` view. |{ serviceName, servicePrice, serviceUsername, serviceUser_id } |
 |  `/service/:id`  |     `GET`     | Specific Service screen. Renders `service` view.       |                    |
@@ -57,7 +57,6 @@ e-commerce for services
 ### Service.model.js
 ```javascript
 {
-    name: { type: String, required: true },
     description: { type: String, required: true },
     price: { type: Number, min: 1, required: true },
     location: [ { type: String, required: true } ],

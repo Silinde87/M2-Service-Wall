@@ -174,7 +174,6 @@ module.exports = {
 	//Replace user_id for real user_id's from mongoDB before insert services
 	services: [
 		{
-			name: "Logo flat design",
 			description: "I will design 3 modern minimalist logo design",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["40.741895", "-73.989308"],
@@ -184,7 +183,6 @@ module.exports = {
 			category: getCategory("design"),
 		},
 		{
-			name: "Ritual logos",
 			description: "I will create a logo design for modern brands",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["44.6054434", "33.5220842"],
@@ -194,7 +192,6 @@ module.exports = {
 			category: getCategory("design"),
 		},
 		{
-			name: "graphicpunk",
 			description: "I will make collectable pixel art for your nft business",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["59.938732", "30.316229"],
@@ -204,7 +201,6 @@ module.exports = {
 			category: getCategory("design"),
 		},
 		{
-			name: "jonnthedark",
 			description: "I will create a game illustration for you",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["55.7504461", "37.6174943"],
@@ -214,7 +210,6 @@ module.exports = {
 			category: getCategory("design"),
 		},
 		{
-			name: "lightninghero",
 			description: "I will make you a minecraft profile picture or logo",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["55.7823547", "49.1242266"],
@@ -224,7 +219,6 @@ module.exports = {
 			category: getCategory("design"),
 		},
 		{
-			name: "dntanic",
 			description: "I will write an engaging SEO article on any mental health topic",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["41.6132925", "2.6576102"],
@@ -234,7 +228,6 @@ module.exports = {
 			category: getCategory("writing"),
 		},
 		{
-			name: "thedataman",
 			description: "I will write complex mysql postgresql sql postgis queries",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["55.0282171", "82.9234509"],
@@ -244,7 +237,6 @@ module.exports = {
 			category: getCategory("programming"),
 		},
 		{
-			name: "happytime",
 			description: "I will be your life coach to success and personal development",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["48.7081906", "44.5153353"],
@@ -254,7 +246,6 @@ module.exports = {
 			category: getCategory("lifestyle"),
 		},
 		{
-			name: "dilamaths",
 			description: "I will design a unique and responsive wordpress website with SEO",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["54.991375", "73.371529"],
@@ -264,7 +255,6 @@ module.exports = {
 			category: getCategory("programming"),
 		},
 		{
-			name: "bluespecint",
 			description: "I will create unique ideas and write your game design document",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["43.1150678", "131.8855768"],
@@ -274,7 +264,6 @@ module.exports = {
 			category: getCategory("writing"),
 		},
 		{
-			name: "mairagamer",
 			description: "I will be your professional game developer for unity mobiles games",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["43.5854823", "39.723109"],
@@ -284,7 +273,6 @@ module.exports = {
 			category: getCategory("programming"),
 		},
 		{
-			name: "stephandev",
 			description: "I will blueprint a game for you in unreal engine",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["47.2213858", "39.7114196"],
@@ -294,7 +282,6 @@ module.exports = {
 			category: getCategory("programming"),
 		},
 		{
-			name: "siasharma",
 			description: "I will edit your youtube videos professionally and creatively",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["63.3233807", "97.0979974"],
@@ -304,7 +291,6 @@ module.exports = {
 			category: getCategory("video"),
 		},
 		{
-			name: "julia9291",
 			description: "I will record professional violin or strings parts in my studio",
 			price: Math.floor(Math.random() * 500) + 1,
 			location: ["62.027287", "129.732086"],
