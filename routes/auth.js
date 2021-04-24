@@ -11,22 +11,27 @@ router.get('/signup', isLoggedOut, (req, res) => {
     res.render('auth/signup')
 });
 router.post('/signup', (req, res, next) =>{
-    const {email, password} = req.body;
+    const {username, email, password} = req.body;
 
-    if(!email || !password){
-        res.render('auth/signup', {errorMessage: "Please fill both fields"})
+    if(!username || !email || !password){
+        return res.render('auth/signup', {errorMessage: "Please fill all fields"})
     }
-    User.findOne({email})
+    User.findOne({ username })
+
     .then((user) =>{
+        console.log(user)
         if(user){
             res.render('auth/signup', {errorMessage: "This email already exists"})
         }
         const salt = bcrypt.genSaltSync(saltRounds)
         const hashPassword = bcrypt.hashSync(password, salt);
-        console.log({email, password});
+        console.log({username, email, password});
 
-        User.create({ email, password: hashPassword })
-        .then((newUser) => { 
+        User.create({ username, email, password: hashPassword })
+        .then((newUser) => {
+            if({username}){
+                res.render('auth/signup', {errorMessage: "This username already exists"})
+            } 
             req.login(newUser, (error) => {
                 if(error) next(error);
                 return res.redirect('/profile')
@@ -38,8 +43,21 @@ router.post('/signup', (req, res, next) =>{
         })
     })
 })
-
+//falta middleware isLoggedOut
 router.get('/login', isLoggedOut, (req, res) =>{
     res.render('auth/login')
 })
+
+router.post('/login', passport.authenticate("local", {
+    successRedirect: "/profile",
+    failureRedirect: "/auth/login",
+    failureFlash: true,
+    passReqToCallback: true
+  }));
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/auth/login');
+  })
+
 module.exports = router;

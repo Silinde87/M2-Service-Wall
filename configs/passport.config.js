@@ -13,10 +13,10 @@ module.exports = (app) =>{
     })
     app.use(flash())
 
-    passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password', passReqToCallback: true}, (req, email, password, next ) =>{
-        User.findOne({email})
-        .then(email =>{
-            if(!email){
+    passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password', passReqToCallback: true }, (req, email, password, next ) =>{
+        User.findOne({ email })
+        .then(user =>{
+            if(!user){
                 return(null, false, {message: 'Wrong user or password'})
             }
             if(bcrypt.compareSync(password, user.password)){
