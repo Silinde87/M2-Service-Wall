@@ -1,10 +1,19 @@
 <div id="services-container">
     {{#each services}}
         <div class="card service-box">
-            <img src="{{image}}" class="card-img-top" alt="...">
+            <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{user_id.username}}</h5>
+                <div class="card-top">
+                    <img class="card-avatar" src="{{user_id.image}}" alt="user-avatar">
+                    <h5 class="card-username">{{user_id.username}}</h5>
+                </div>
                 <p class="card-text">{{description}}</p>
+                <div class="card-bottom">
+                    <img class="card-star"
+                        src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
+                        alt="star">
+                    <p class="card-price"><span>€ </span>{{price}}</p>
+                </div>
             </div>
         </div>
     {{/each}}

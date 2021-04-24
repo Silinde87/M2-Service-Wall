@@ -43,6 +43,9 @@ main {
 	height: 100px;
 	margin: 20px;
 }
+.category-container p{
+	text-align: center;
+}
 
 /* SERVICES LIST STYLES */
 #services-container {
@@ -54,9 +57,22 @@ main {
 	width: 150px !important;
 	margin: 7px;
 }
-.service-box img {
+.card-image-service {
 	height: 150px;
 	object-fit: cover;
+}
+.card-top{
+	display: flex;
+}
+.card-avatar {
+	height: 15px;
+}
+.card-bottom{
+	display: flex;
+	justify-content: space-between;
+}
+.card-star{
+	height: 15px;
 }
 
 /* FOOTER STYLES */

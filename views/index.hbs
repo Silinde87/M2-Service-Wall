@@ -1,7 +1,10 @@
 <div id="categories-container">
 
     {{#each categories}}
-        <a href="/categories/{{name}}"><img class="category-icon" src="{{image}}" alt="category-icon"></a>
+        <div class="category-container">
+            <a href="/categories/{{name}}"><img class="category-icon" src="{{image}}" alt="category-icon"></a>
+            <p>{{name}}</p>
+        </div>        
     {{/each}}
 
 </div>

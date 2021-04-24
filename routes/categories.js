@@ -9,6 +9,9 @@ router.get("/:name", (req, res, next) => {
 	Service.find({ "category.name": name })
 		.populate("user_id")
 		.then((services) => {
+			//todo: Get media rate from each service
+			console.log(services[0].user_id.reviews)
+			
 			res.render("categories", { services });
 		})
 		.catch((err) => console.error(err));
