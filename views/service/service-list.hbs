@@ -1,5 +1,8 @@
 {{#if services}}
-    <h2 id="services-search-label">Results for "{{description}}"</h2>
+    <div id="services-title-label">
+        <h2>Results for "{{description}}"</h2>
+        <p>{{services.length}} services found.</p>
+    </div>
     <div id="services-container">
         {{#each services}}
             <div class="card service-box">
@@ -24,7 +27,9 @@
         {{/each}}
     </div>
 {{else}}
-    <h2 id="category-name-label"> No services found for your search: "{{description}}"</h2>
-    <h3>Check our <a class="link-dark" href="/">Categories</a></h3>
-    <img id="empty-list" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619273008/samples/travolta_dsi5gb.gif" alt="">
+    <div id="noservices-label-container" class="my-auto">
+        <h2 id="category-name-label"> No services found for your search: "{{description}}"</h2>
+        <h3>Check our <a class="link-dark" href="/">Categories</a></h3>
+        <img id="empty-list" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619273008/samples/travolta_dsi5gb.gif" alt="">
+    </div>
 {{/if}}
