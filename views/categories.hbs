@@ -1,5 +1,8 @@
 {{#if services}}
-    <h2 id="category-name-label"><a class="link-dark" href="/">Category</a> > {{services.0.category.name}}</h2>
+    <div id="services-title-label">
+        <h2 id="category-name-label"><a class="link-dark" href="/">Category</a> > {{services.0.category.name}}</h2>
+        <p>{{services.length}} services found.</p>
+    </div>
     <div id="services-container">
         {{#each services}}        
             <div class="card service-box">
@@ -24,6 +27,8 @@
         {{/each}}
     </div>
 {{else}}
-    <h2 id="category-name-label"> There is no services yet, try another <a class="link-dark" href="/">category</a></h2>
-    <img id="empty-list" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619273008/samples/travolta_dsi5gb.gif" alt="empty-gif">
+    <div id="noservices-label-container" class="my-auto">
+        <h3 id="category-name-label"> There is no services yet, try another <a class="link-dark" href="/">category</a></h3>
+        <img id="empty-list" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619273008/samples/travolta_dsi5gb.gif" alt="empty-gif">
+    </div>
 {{/if}}
