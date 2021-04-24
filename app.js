@@ -13,6 +13,7 @@ require('./configs/middleware.config')(app);
 require('./configs/views.config')(app);
 require('./configs/locals.config')(app);
 require('./configs/session.config')(app);
+require('./configs/passport.config')(app);
 //require('./configs/passport.config')(app);
 
 const index = require("./routes/index");
