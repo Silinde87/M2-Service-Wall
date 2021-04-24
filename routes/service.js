@@ -12,7 +12,6 @@ router.get('/search', (req, res, next) => {
     Service.find({description:  {$regex : `.*${description}.*`}})
         .populate("user_id")
         .then((services) => {
-            console.log(services);
             res.render("service/service-list", { services, description });
 		})
 		.catch((err) => console.error(err));
