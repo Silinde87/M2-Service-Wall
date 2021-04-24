@@ -26,6 +26,8 @@ main,
 }
 main {
 	flex: 1;
+	display: flex;
+	flex-direction: column;
 }
 
 /* NAV BAR STYLES */
@@ -61,7 +63,8 @@ main {
 	height: 150px;
 	object-fit: cover;
 }
-.card-top{
+.card-top,
+.rate-box{
 	display: flex;
 }
 .card-avatar {
@@ -73,6 +76,10 @@ main {
 }
 .card-star{
 	height: 15px;
+}
+#empty-list {
+	width: 70%;
+	max-width: 700px;
 }
 
 /* FOOTER STYLES */
