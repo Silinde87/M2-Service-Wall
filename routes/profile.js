@@ -4,8 +4,7 @@ const User = require('../models/User.model')
 const{ isLoggedIn } = require('../middlewares/index');
 const Service = require('../models/Service.model');
 
-router.get('/', isLoggedIn, (req, res, next) => {
-    console.log(req.user.id);
+router.get('/', isLoggedIn, (req, res, next) => {;
     Service.find({user_id: req.user.id})
     .populate("user_id")
     .then(services => {
@@ -32,8 +31,6 @@ router.post('/:id', isLoggedIn, (req, res, next) =>{
         res.redirect('/profile')
     })
 })
-
-
 
 
 
