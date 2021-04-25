@@ -39,9 +39,7 @@ router.post("/create", uploader.single("image"), (req, res, next) => {
 
 	Service.create({ description, price, location, image, user_id, category })
 		.then(() => {
-			res.redirect("/");
-			//todo: Remove redirect to index and redirect to user profile
-			//res.redirect(`/profile/${user_id}`);
+			res.redirect(`/profile`);
 		})
 		.catch((err) => console.error(err));
 });
@@ -57,9 +55,7 @@ router.post("/:id/delete", isLoggedIn, (req, res, next) => {
 			if (JSON.stringify(service.user_id) === JSON.stringify(user_id)) {
 				Service.findByIdAndRemove(service_id)
 					.then(() => {
-						res.redirect("/");
-						//todo: Remove redirect to index and redirect to user profile
-						//res.redirect(`/profile/${user_id}`);
+						res.redirect(`/profile`);
 					})
 					.catch((err) => console.error(err));
 			}
@@ -165,10 +161,7 @@ router.post("/:id/book", isLoggedIn, (req, res, next) => {
 			);
 			Promise.all([updateBookedServices, updateSoldServices])
 				.then(() => {
-					console.log("Arrays updated");
-					res.redirect("/");
-					//todo: Remove redirect to index and redirect to user profile
-					//res.redirect(`/profile/${user_id}`);
+					res.redirect(`/profile`);
 				})
 				.catch((err) => console.error(err));
 		})
