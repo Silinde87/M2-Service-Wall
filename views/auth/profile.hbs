@@ -1,4 +1,53 @@
-<div><h1>My profile</h1></div> <br>
-<h2>{{user.username}}</h2>
-<h3>{{user.email}}</h3>
-<div><a href="/auth/logout">Log out</a></div>
+<div class="profile-info">
+    <div class="img-row">
+        <div>
+            <h1>My profile</h1><br>
+            <span>My review score: {{user.rate}}</span>
+        </div>
+        <div class="img-pen-div">
+            <img class="profile-img" src="{{user.image}}" alt="profile-img">
+            <a class="pencil-link" href=""><img class="pencil-img"
+                    src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619354640/Service-Wall/pencil_evuaxq.svg"
+                    alt="pencil"></a>
+        </div>
+    </div>
+    <div class="details">
+        <p>{{user.username}}</p>
+        <p>{{user.email}}</p>
+        <p>{{user.phone_number}}</p>
+    </div><br>
+    
+    <a href="/profile/{{user._id}}/edit">Edit</a>
+
+    <div><a href="/auth/logout">Log out</a></div> <br>
+</div>
+    <div>
+        <div class="my-services"><h2>My services</h2></div>
+        
+        <div id="services-container">
+            
+            {{#each services}}
+            <div class="card service-box">
+                <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <div class="card-top">
+                        <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
+                        <h5 class="card-username">{{user_id.username}}</h5>
+                    </div>
+                    <p class="card-text">{{description}}</p>
+                    <div class="card-bottom">
+                        <div class="rate-box">
+                            <img class="card-star"
+                                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
+                                alt="star">
+                            <p class="rate-text">{{user_id.rate}} <span>({{user_id.reviews.length}})</span></p>
+                        </div>
+                        <p class="card-price"><span>€ </span>{{price}}</p>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+        </div>
+        
+    </div>
+

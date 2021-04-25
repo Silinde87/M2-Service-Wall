@@ -1,20 +1,48 @@
 
-
-<form method="POST" action="/auth/login">
-  <div class="mb-3 needs-validation">
+<form class="sign-form" method="POST" action="/auth/login" class="needs-validation" novalidate>
+<div class="mb-3">
     <h1>Log in</h1> <br>
-    <label for="exampleInputEmail1" class="form-label">Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-  </div>
+ <label for="validationCustomUsername" class="form-label">Email</label>
+    <div class="input-group has-validation">
+      <input type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="email" required>
+      <div class="invalid-feedback">
+        Please introduce a valid email.
+      </div>
+    </div>
+</div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required minlength="6" maxlength="10">
+    <label for="validationCustom05" class="form-label">Password</label>
+    <input type="password" class="form-control" id="validationCustom05" name="password" minlength="6" maxlength="10" required>
+    <div class="invalid-feedback">
+      Please provide a password.
+    </div>
   </div>
+  {{#if errorMessage}}
+  <div>
+   <p style="color: red;" class="error-message"> {{errorMessage}}</p>
+  </div>
+{{/if}}
   <button type="submit" class="btn btn-primary">Log in</button>
   <p>Not a memeber yet? <a href="/auth/signup">Join now</a></p>
 </form>
-{{#if errorMessage}}
-  <div>
-   <p class="error-message"> {{ errorMessage }}</p>
-  </div>
-{{/if}}
+
+<script>
+(function () {
+  'use strict'
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
