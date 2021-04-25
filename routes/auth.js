@@ -43,9 +43,9 @@ router.post('/signup', (req, res, next) =>{
         })
     })
 })
-//falta middleware isLoggedOut
+
 router.get('/login', isLoggedOut, (req, res) =>{
-    res.render('auth/login')
+    res.render('auth/login', {errorMessage: req.flash('error')[0]})
 })
 
 router.post('/login', passport.authenticate("local", {
