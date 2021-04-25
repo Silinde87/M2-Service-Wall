@@ -53,7 +53,7 @@ router.post("/:id/delete", isLoggedIn, (req, res, next) => {
 
 	Service.findById(service_id)
 		.then((service) => {
-			//Compare service_id and user_id, if equal deletes service.
+			//Extra validation. Compare service_id and user_id, if equal deletes service.
 			if (JSON.stringify(service.user_id) === JSON.stringify(user_id)) {
 				Service.findByIdAndRemove(service_id)
 					.then(() => {
@@ -66,6 +66,18 @@ router.post("/:id/delete", isLoggedIn, (req, res, next) => {
 		})
 		.catch((err) => console.error(err));
 });
+
+/* EDIT service routes */
+router.get("/:id/edit", isLoggedIn, (req, res, next) => {
+    const { id } = req.params;
+
+    Service.findById(id)
+        .then((service) => {
+            console.log(service)
+            res.render('service/service-edit', {service , categories});
+        })
+        .catch((err) => console.error(err));
+})
 
 /* Profile view. Rendered by user id. */
 router.get("/:id", (req, res, next) => {
