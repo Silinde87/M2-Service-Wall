@@ -1,0 +1,22 @@
+<form method="POST" action="/auth/signup">
+  <div class="mb-3 needs-validation">
+    <h1>Join us</h1> <br>
+    <label for="exampleInputName1" class="form-label">User name</label>
+    <input type="text" class="form-control" id="exampleInputName1" aria-describedby="emailHelp" name="username">
+    <label for="exampleInputEmail1" class="form-label">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required minlength="6" maxlength="10">
+  </div>
+  <button type="submit" class="btn btn-primary">Join</button>
+  <p>Already a member? <a href="/auth/login">Log in</a></p>
+</form>
+{{#if errorMessage}}
+  <div>
+   <p class="error-message"> {{ errorMessage }}</p>
+  </div>
+{{/if}}
+
+

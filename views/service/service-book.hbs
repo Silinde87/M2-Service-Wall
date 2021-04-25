@@ -1,0 +1,35 @@
+<div id="service-book-container">
+    <div id="services-label">
+        <h2>What can I do for you?</h2>
+    </div>
+    <div id="user-box">
+        <a class="link-dark" href="/profile/{{user_id._id}}">
+            <div id="user-top">
+                <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
+                <p id="service-username">{{user_id.username}}</p>
+            </div>
+        </a>
+        <div class="contact-box">
+            <a href="mailto:{{user_id.email}}">
+                <img class="mail-icon" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/email_rqafsa.svg" alt="mail icon">
+            </a>
+            <a href="tel:{{user_id.phone_number}}">
+                <img class="phone-icon" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/phone-call_mzwhgm.svg" alt="phone icon">
+            </a>
+        </div>
+    </div>
+    <div id="service-book-form">
+        <form action="/service/{{_id}}/book" method="POST">
+            <div class="mb-3">
+                <label for="description-input" class="form-label">What do you need?</label>
+                <textarea rows="8" type="textarea" class="form-control" id="description-input" name="description" placeholder="Describe your needs..."></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="date-input" class="form-label">When do you need it?</label>
+                <input type="date" class="form-control" id="date-input" name="price">
+            </div>
+            <button class="button" type="submit">Pay now (€{{price}})</button>
+        </form>
+    </div>
+
+</div>

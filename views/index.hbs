@@ -1,2 +1,10 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div id="categories-container">
+
+    {{#each categories}}
+        <div class="category-container">
+            <a href="/categories/{{name}}"><img class="category-icon" src="{{image}}" alt="category-icon"></a>
+            <p>{{name}}</p>
+        </div>        
+    {{/each}}
+
+</div>
