@@ -20,16 +20,18 @@
     <a href="/profile/{{user._id}}/edit">Edit</a>
 
     <div><a href="/auth/logout">Log out</a></div> <br>
-
+</div>
     <div>
-        <h2>My services</h2>
-        <div>
+        <div class="my-services"><h2>My services</h2></div>
+        
+        <div id="services-container">
+            
             {{#each services}}
             <div class="card service-box">
                 <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <div class="card-top">
-                        <img class="card-avatar" src="{{user_id.image}}" alt="user-avatar">
+                        <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
                         <h5 class="card-username">{{user_id.username}}</h5>
                     </div>
                     <p class="card-text">{{description}}</p>
@@ -49,4 +51,3 @@
         
     </div>
 
-</div>
