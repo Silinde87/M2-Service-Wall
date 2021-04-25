@@ -18,28 +18,54 @@ body {
 	display: flex;
 	flex-direction: column;
 }
-main,
-#categories-container {
+#categories-container,
+#noservices-label-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 main {
 	flex: 1;
-	display: flex;
-	flex-direction: column;
+}
+.button{
+	width: 100%;
+	height: 30px;
+	font-size: 1.6rem;
+	font-weight: 600;
+	border-radius: 15px;
 }
 
 /* NAV BAR STYLES */
 .navbar {
-	height: 70px;
+	height: 60px;
 	margin-bottom: 20px;
+	border-bottom: 1px solid #C1C1C1;
+}
+.navbar-brand{
+	font-size: 2rem;
+	font-weight: 700;
+}
+.navbar input {
+	width: 200px;
+	height: 35px;
+	border-radius: 30px;
+	font-size: 1.4rem;
+	padding-left: 15px;
+}
+.navbar .fa-search{
+	font-size: 1.6rem;
+	margin-top: 2px;
+}
+.navbar button{
+	border-radius: 10px;
+
 }
 
 /* INDEX STYLES */
 #categories-container {
 	width: 80%;
 	flex-wrap: wrap;
+	margin: 0 auto;
 }
 .category-icon {
 	height: 100px;
@@ -47,28 +73,63 @@ main {
 }
 .category-container p{
 	text-align: center;
+	font-size: 1.4rem;
+	margin-bottom: 8px;
 }
 
 /* SERVICES LIST STYLES */
+#services-title-label{
+	margin: 20px 20px 0px 20px;	
+}
 #services-container {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
+#services-container a{
+	text-decoration: none;
+	color: black;
+}
+#services-container a:hover{
+	color: black;
+}
 .service-box {
 	width: 150px !important;
+	height: 265px !important;
 	margin: 7px;
+	box-shadow: 2px 2px 2px 0px rgba(179,179,179,1)
 }
 .card-image-service {
 	height: 150px;
 	object-fit: cover;
 }
 .card-top,
-.rate-box{
+.rate-box,
+#user-top,
+.contact-box{
 	display: flex;
+	align-items: center;
 }
-.card-avatar {
+.card-top{
+	margin-bottom: 5px;
+}
+.user-avatar{
 	height: 15px;
+	margin-right: 5px;
+}
+.card-text,
+.rate-text{
+	font-size: 1.2rem;
+}
+.card-text{
+	height: 54px;
+	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+.card-username{
+	margin: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .card-bottom{
 	display: flex;
@@ -76,21 +137,96 @@ main {
 }
 .card-star{
 	height: 15px;
+	margin-right: 3px;
+}
+.card-price{
+	font-size: 1.4rem;
+	font-weight: 600;
+}
+.contact-box{
+	width: 70px;
+	justify-content: space-between;
+}
+.mail-icon{
+	width: 30px;	
+}
+.phone-icon{
+	height: 25px;
+}
+#noservices-label-container{
+	height: 100%;
+	flex-direction: column;	
 }
 #empty-list {
 	width: 70%;
 	max-width: 700px;
+	margin-top: 10px;
+}
+
+/* SERVICE SCREEN STYLES */
+#service-container,
+#service-book-container{
+	margin: 20px 20px 0px 20px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+}
+#service-description{
+	margin: 10px 0px 10px 0px;
+	font-size: 1.6rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#image-service-box,
+#map{
+	align-self: center;
+}
+#map{
+	width: 335px;
+	height: 200px;
+}
+.image-service{
+	width: 335px;
+	max-height: 300px;
+	object-fit: cover;
+}
+#user-box{
+	width: 100%;
+	max-height: 24px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.6rem;
+	margin: 10px 0px 20px 0px;
+}
+.rate-box{
+	min-width: 42px;
+}
+#service-username{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-weight: 600;
+	max-width: 200px;
+}
+#service-btn-container{
+	width: 100%;
+	margin: 15px 0px 20px 0px;
+}
+#service-book-form{
+	width: 100%;
+	font-size: 1.4rem;
 }
 
 /* FOOTER STYLES */
 footer {
 	position: sticky;
-	width: 100%;
 	bottom: 0;
-	height: 70px;
+	min-width: 100%;
+	min-height: 70px;
 	display: flex;
 	align-items: center;
-	margin-top: 20px;
+	margin-top: 20px !important;
+	border-top: 1px solid #C1C1C1;
 }
 footer .row {
 	width: 100%;

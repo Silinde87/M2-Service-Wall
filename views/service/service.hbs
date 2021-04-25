@@ -1,0 +1,47 @@
+<div id="service-container">
+    <div id="services-label">
+        <h2><a class="link-dark" href="/">Categories</a> > <a class="link-dark" href="/categories/{{category.name}}">{{category.name}}</a></h2>
+    </div>
+    <div id="service-description">
+        <p>{{description}}</p>
+    </div>
+    <div id="image-service-box">
+        <img class="image-service px-0" src="{{image}}" alt="image-service">
+    </div>
+    <div id="user-box">
+        <a class="link-dark" href="/profile/{{user_id._id}}">
+            <div id="user-top">
+                <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
+                <p id="service-username">{{user_id.username}}</p>
+            </div>
+        </a>
+        <div class="rate-box">
+            <img class="card-star"
+                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
+                alt="star">
+            <p class="rate-text">{{user_id.rate}} <span>({{user_id.reviews.length}})</span></p>
+        </div>
+    </div>
+    <!-- Mapbox import. Test coordinates -->
+    <div id='map'>
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1Ijoic2lsaW5kZTg3IiwiYSI6ImNrbnc4MnYxZDBkdW4yb3RndWFrb3ByengifQ.3sbtlgTOx_O-KQVbvwKxow';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [12.550343, 55.665957],
+                zoom: 8
+            });
+            var marker1 = new mapboxgl.Marker()
+                .setLngLat([12.554729, 55.70651])
+                .addTo(map);
+        </script>
+    </div>
+
+    <div id="service-btn-container">
+        <form action="/service/{{_id}}/book" method="GET">
+            <button class="button" type="submit">Contract (€{{price}})</button>
+        </form>
+    </div>
+
+</div>

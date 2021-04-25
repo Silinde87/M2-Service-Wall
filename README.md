@@ -42,6 +42,7 @@ e-commerce for services
 |`/service/:id/edit`|    `GET`     | Edit Service screen. Renders `service-edit` view.      |                    |
 |`/service/:id/edit`|     `POST`   | Sends edit Service form and update service in DB. Redirects to `user-profile` view.|{ user.username, user.image, description, price, location, image, category }|
 |`/service/:id/delete` |   `POST`  | Deletes a Service from DB. Redirects to `user-profile` view.|{ service_id } |
+|`/service/:id/book`|    `GET`     | Book a service screen. Renders `service-book` view.    |                    |
 |`/service/:id/book`|   `POST`  | Book a Service and update client User's bookedServices and seller User's soldServices from DB. Redirects to `stripe` view. |{ serviceName, servicePrice, serviceUsername, serviceUser_id } |
 |  `/service/:id`  |     `GET`     | Specific Service screen. Renders `service` view.       |                    |
 |`/profile/:id/review`|   `GET`    | Review screen. Renders `review` view.                  |                    |

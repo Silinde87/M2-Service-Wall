@@ -1,30 +1,37 @@
 {{#if services}}
-    <h2 id="services-search-label">Results for "{{description}}"</h2>
+    <div id="services-title-label">
+        <h2>Results for "{{description}}"</h2>
+        <p>{{services.length}} services found.</p>
+    </div>
     <div id="services-container">
         {{#each services}}
-            <div class="card service-box">
-                <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <div class="card-top">
-                        <img class="card-avatar" src="{{user_id.image}}" alt="user-avatar">
-                        <h5 class="card-username">{{user_id.username}}</h5>
-                    </div>
-                    <p class="card-text">{{description}}</p>
-                    <div class="card-bottom">
-                        <div class="rate-box">
-                            <img class="card-star"
-                                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
-                                alt="star">
-                            <p class="rate-text">{{user_id.rate}} <span>({{user_id.reviews.length}})</span></p>
+            <a href="/service/{{_id}}">
+                <div class="card service-box">
+                    <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <div class="card-top">
+                            <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
+                            <h5 class="card-username">{{user_id.username}}</h5>
                         </div>
-                        <p class="card-price"><span>€ </span>{{price}}</p>
+                        <p class="card-text">{{description}}</p>
+                        <div class="card-bottom">
+                            <div class="rate-box">
+                                <img class="card-star"
+                                    src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
+                                    alt="star">
+                                <p class="rate-text">{{user_id.rate}} <span>({{user_id.reviews.length}})</span></p>
+                            </div>
+                            <p class="card-price"><span>€ </span>{{price}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         {{/each}}
     </div>
 {{else}}
-    <h2 id="category-name-label"> No services found for your search: "{{description}}"</h2>
-    <h3>Check our <a class="link-dark" href="/">Categories</a></h3>
-    <img id="empty-list" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619273008/samples/travolta_dsi5gb.gif" alt="">
+    <div id="noservices-label-container" class="my-auto">
+        <h2 id="category-name-label"> No services found for your search: "{{description}}"</h2>
+        <h3>Check our <a class="link-dark" href="/">Categories</a></h3>
+        <img id="empty-list" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619273008/samples/travolta_dsi5gb.gif" alt="">
+    </div>
 {{/if}}
