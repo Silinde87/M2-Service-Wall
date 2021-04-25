@@ -5,6 +5,7 @@ const User = require("../models/User.model");
 const data = require("../bin/seeds/data");
 const categories = data.categories;
 const { isLoggedIn } = require("../middlewares/index");
+const uploader = require("../configs/cloudinary.config");
 
 router.get("/", (req, res, next) => {});
 
@@ -24,9 +25,10 @@ router.get("/create", isLoggedIn, (req, res, next) => {
 	res.render("service/service-create", { categories });
 });
 
-router.post("/create", isLoggedIn, (req, res, next) => {
-	let { description, price, category, location, image } = req.body;
+router.post("/create", uploader.single("image"), (req, res, next) => {
+	let { description, price, category, location } = req.body;
 	const user_id = req.user._id;
+	const image = req.file.path;
 	//Get category object from category name.
 	categories.forEach((cat) => {
 		if (cat.name === category) category = cat;
@@ -34,10 +36,8 @@ router.post("/create", isLoggedIn, (req, res, next) => {
 
 	//temp. hardcoded location. todo: implement mapbox
 	location = ["35.6828387", "139.7594549"];
-	//image: todo, get "string" from file in a submit. Implement cloudinary
 
-	//todo, add image property at create query
-	Service.create({ description, price, location, user_id, category })
+	Service.create({ description, price, location, image, user_id, category })
 		.then(() => {
 			res.redirect("/");
 			//todo: Remove redirect to index and redirect to user profile
@@ -69,15 +69,59 @@ router.post("/:id/delete", isLoggedIn, (req, res, next) => {
 
 /* EDIT service routes */
 router.get("/:id/edit", isLoggedIn, (req, res, next) => {
-    const { id } = req.params;
+	const { id } = req.params;
 
-    Service.findById(id)
-        .then((service) => {
-            console.log(service)
-            res.render('service/service-edit', {service , categories});
-        })
-        .catch((err) => console.error(err));
-})
+	Service.findById(id)
+		.then((service) => {
+			res.render("service/service-edit", { service, categories });
+		})
+		.catch((err) => console.error(err));
+});
+
+router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
+	let { description, price, category, location } = req.body;
+	categories.forEach((cat) => {
+		if (cat.name === category) category = cat;
+	});
+
+	//temp. hardcoded location. todo: implement mapbox
+	location = ["35.6828387", "139.7594549"];
+
+	if (req.file) { //Update if image
+		Service.findByIdAndUpdate(
+			req.params.id,
+			{
+				description,
+				price,
+				location,
+				image: req.file.path,
+				category,
+			},
+			{ new: true }
+		)
+			.then((service) => {
+				console.log(service);
+				res.redirect(`/service/${req.params.id}`);
+			})
+			.catch((err) => console.error(err));
+	} else { //Update if no image
+		Service.findByIdAndUpdate(
+			req.params.id,
+			{
+				description,
+				price,
+				location,
+				category,
+			},
+			{ new: true }
+		)
+			.then((service) => {
+				console.log(service);
+				res.redirect(`/service/${req.params.id}`);
+			})
+			.catch((err) => console.error(err));
+	}
+});
 
 /* Profile view. Rendered by user id. */
 router.get("/:id", (req, res, next) => {

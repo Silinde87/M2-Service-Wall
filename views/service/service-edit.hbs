@@ -1,5 +1,5 @@
 <h1>Edit your service</h1>
-<form action="/service/create" method="POST">
+<form action="/service/{{service._id}}/edit" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="description-input" class="form-label">Description</label>
         <textarea type="textarea" class="form-control" id="description-input"
@@ -22,7 +22,6 @@
         <label for="location-input" class="form-label">Location</label>
         <input type="text" class="form-control" id="location-input" name="location">
     </div>
-    <!--todo: Implement cloudinary for url images. -->    
     <div class="mb-3">
         <label for="file-input" class="form-label">Service image</label>
         <input class="form-control" type="file" id="file-input" name="image">

@@ -1,5 +1,5 @@
 <h1>Create your service</h1>
-<form action="/service/create" method="POST">
+<form action="/service/create" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="description-input" class="form-label">Description</label>
         <textarea type="textarea" class="form-control" id="description-input" name="description"></textarea>
@@ -16,6 +16,7 @@
             {{/each}}
         </select>
     </div>
+    <!--todo: Implement mapbox for getting location-->
     <div class="mb-3">
         <label for="location-input" class="form-label">Location</label>
         <input type="text" class="form-control" id="location-input" name="location">
