@@ -87,7 +87,8 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 	//temp. hardcoded location. todo: implement mapbox
 	location = ["35.6828387", "139.7594549"];
 
-	if (req.file) { //Update if image
+	if (req.file) {
+		//Update if image
 		Service.findByIdAndUpdate(
 			req.params.id,
 			{
@@ -104,7 +105,8 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 				res.redirect(`/service/${req.params.id}`);
 			})
 			.catch((err) => console.error(err));
-	} else { //Update if no image
+	} else {
+		//Update if no image
 		Service.findByIdAndUpdate(
 			req.params.id,
 			{
@@ -116,11 +118,52 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 			{ new: true }
 		)
 			.then((service) => {
-				console.log(service);
 				res.redirect(`/service/${req.params.id}`);
 			})
 			.catch((err) => console.error(err));
 	}
+});
+
+/* BOOK Service route */
+router.get("/:id/book", isLoggedIn, (req, res, next) => {
+	const { id } = req.params;
+	Service.findById(id)
+		.populate("user_id")
+		.then((service) => {
+			res.render("service/service-book", service);
+		})
+		.catch((err) => console.error(err));
+});
+
+router.post("/:id/book", isLoggedIn, (req, res, next) => {
+	//todo: Implement stripe api
+	console.log("test call to stripe API");
+
+	const service_id = req.params.id;
+	const buyer_id = req.user._id;
+
+	Service.findById(service_id)
+		.populate("user_id")
+		.then((service) => {
+			const serviceName = service.description;
+			const servicePrice = service.price;
+			const serviceUserName = service.user_id.username;
+			const serviceUser_id = service.user_id._id;
+
+			//Updating buyer's bookedServices array
+			// User.findByIdAndUpdate(buyer_id, {
+			// 	$push: { bookedServices: { serviceName, servicePrice, serviceUserName, serviceUser_id } },
+			// })
+			// 	.then((user) => {})
+			// 	.catch((err) => console.error(err));
+			// //Updating seller's soldServices Array
+			// User.findByIdAndUpdate(seller_id)
+			// 	.then((user) =>{
+
+			// 	})
+			// 	.catch(err => console.error(err));
+		})
+		.catch((err) => console.error(err));
 });
 
 /* Profile view. Rendered by user id. */
@@ -129,7 +172,6 @@ router.get("/:id", (req, res, next) => {
 	Service.findById(id)
 		.populate("user_id")
 		.then((service) => {
-			console.log(service);
 			res.render("service/service", service);
 		})
 		.catch((err) => console.error(err));

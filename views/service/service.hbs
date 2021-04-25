@@ -39,7 +39,9 @@
     </div>
 
     <div id="service-btn-container">
-        <button class="button" data-id={{_id}}>Contract (€{{price}})</button>
+        <form action="/service/{{_id}}/book" method="GET">
+            <button class="button" type="submit">Contract (€{{price}})</button>
+        </form>
     </div>
 
 </div>

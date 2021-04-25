@@ -105,7 +105,8 @@ main {
 }
 .card-top,
 .rate-box,
-#user-top{
+#user-top,
+.contact-box{
 	display: flex;
 	align-items: center;
 }
@@ -142,6 +143,16 @@ main {
 	font-size: 1.4rem;
 	font-weight: 600;
 }
+.contact-box{
+	width: 70px;
+	justify-content: space-between;
+}
+.mail-icon{
+	width: 30px;	
+}
+.phone-icon{
+	height: 25px;
+}
 #noservices-label-container{
 	height: 100%;
 	flex-direction: column;	
@@ -153,7 +164,8 @@ main {
 }
 
 /* SERVICE SCREEN STYLES */
-#service-container{
+#service-container,
+#service-book-container{
 	margin: 20px 20px 0px 20px;
 	display: flex;
 	justify-content: center;
@@ -199,6 +211,10 @@ main {
 #service-btn-container{
 	width: 100%;
 	margin: 15px 0px 20px 0px;
+}
+#service-book-form{
+	width: 100%;
+	font-size: 1.4rem;
 }
 
 /* FOOTER STYLES */
