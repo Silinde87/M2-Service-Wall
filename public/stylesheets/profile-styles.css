@@ -34,6 +34,13 @@
     display: inline;
     margin: 10%;
 }
-.sign-form{
+.needs-validation{
     margin: 50% 20% 10%;
+}
+.delete-button{
+    border: none;
+    color: red;
+    text-decoration: underline;
+    background: none;
+    margin: 10%;
 }

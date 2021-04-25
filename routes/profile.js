@@ -24,6 +24,15 @@ router.get('/:id/edit', isLoggedIn, (req, res, next) =>{
         console.error(error)
     })
 })
+router.post('/:id/delete', (req, res, next) =>{
+    User.findByIdAndRemove(req.params.id)
+    .then(() =>{
+        Service.updateMany({user_id: req.params.id}, {flag: false})
+        .then(() =>{
+            res.redirect('/')
+        })
+    })
+})
 router.post('/:id', uploader.single('image'), isLoggedIn, (req, res, next) =>{
     const{username, phone_number, image} = req.body;
     if(req.file){

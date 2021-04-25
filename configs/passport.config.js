@@ -17,11 +17,13 @@ module.exports = (app) =>{
         User.findOne({ email })
         .then(user =>{
             if(!user){
+                //document.querySelector(".needs-validation").classList.add("was-validated");
                 return next(null, false, {message: 'Wrong email or password. Please try again.'})
             }
             if(bcrypt.compareSync(password, user.password)){
                 return next(null, user)
             }else{
+                //document.querySelector(".needs-validation").classList.add("was-validated");
                 return next(null, false, {message: 'Wrong email or password. Please try again.'})
             }
         })

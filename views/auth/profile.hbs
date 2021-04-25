@@ -16,38 +16,70 @@
         <p>{{user.email}}</p>
         <p>{{user.phone_number}}</p>
     </div><br>
-    
+
     <a href="/profile/{{user._id}}/edit">Edit</a>
 
     <div><a href="/auth/logout">Log out</a></div> <br>
 </div>
-    <div>
-        <div class="my-services"><h2>My services</h2></div>
-        
-        <div id="services-container">
-            
-            {{#each services}}
-            <div class="card service-box">
-                <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <div class="card-top">
-                        <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
-                        <h5 class="card-username">{{user_id.username}}</h5>
-                    </div>
-                    <p class="card-text">{{description}}</p>
-                    <div class="card-bottom">
-                        <div class="rate-box">
-                            <img class="card-star"
-                                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
-                                alt="star">
-                            <p class="rate-text">{{user_id.rate}} <span>({{user_id.reviews.length}})</span></p>
-                        </div>
-                        <p class="card-price"><span>€ </span>{{price}}</p>
-                    </div>
-                </div>
-            </div>
-        {{/each}}
-        </div>
-        
+<div>
+    <div class="my-services">
+        <h2>My services</h2>
     </div>
 
+    <div id="services-container">
+
+        {{#if services}}
+        {{#each services}}
+        <div class="card service-box">
+            <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <div class="card-top">
+                    <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
+                    <h5 class="card-username">{{user_id.username}}</h5>
+                </div>
+                <p class="card-text">{{description}}</p>
+                <div class="card-bottom">
+                    <div class="rate-box">
+                        <img class="card-star"
+                            src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
+                            alt="star">
+                        <p class="rate-text">{{user_id.rate}} <span>({{user_id.reviews.length}})</span></p>
+                    </div>
+                    <p class="card-price"><span>€ </span>{{price}}</p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <p style="padding: 10px;">Nothing here. <a style="text-decoration: underline; color:blue;"
+                href="/service/create">Add a new service</a></p>
+        {{/if}}
+    </div>
+    <br>
+    {{!-- <form style="margin:10%" action="/profile/{{user._id}}/delete" method="POST">
+        <button class="delete-button" type="submit">Delete my account</button>
+    </form> --}}
+    <button type="button" class="delete-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete my account
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Do you really want to delete your account? This action is permanent.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+
+                    <form action="/profile/{{user._id}}/delete" method="POST">
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
