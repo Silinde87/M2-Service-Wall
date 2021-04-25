@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
     crossorigin="anonymous" />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
@@ -21,7 +23,8 @@
       <div class="container-fluid">
         <a href="/" class="navbar-brand">ServiceWall</a>
         <form action="/service/search" method="GET" class="d-flex">
-          <input class="form-control me-2" name="description" type="search" placeholder="Find a service..." aria-label="Search">
+          <input class="form-control me-2" name="description" type="search" placeholder="Find a service..."
+            aria-label="Search">
           <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
         </form>
       </div>
@@ -32,22 +35,26 @@
     {{{body}}}
   </main>
 
-  <footer class="container bg-light my-0 mx-0">
+  <footer class="container bg-light mb-0 mx-0 mt-4">
     <div class="row">
       <div class="col text-center">
         <a href="/">
-          <img class="footer-icon" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619195222/Service-Wall/home_mhf3et.svg"
+          <img class="footer-icon"
+            src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619195222/Service-Wall/home_mhf3et.svg"
             alt="home-icon">
         </a>
       </div>
       <div class="col text-center">
         <a href="/service/create">
-          <img class="footer-icon" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619195450/Service-Wall/add-button_li4obb.svg" alt="add-icon">
+          <img class="footer-icon"
+            src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619195450/Service-Wall/add-button_li4obb.svg"
+            alt="add-icon">
         </a>
       </div>
       <div class="col text-center">
         <a href="/auth/login">
-          <img class="footer-icon" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619195567/Service-Wall/user_i8giaf.svg"
+          <img class="footer-icon"
+            src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619195567/Service-Wall/user_i8giaf.svg"
             alt="avatar-icon">
       </div>
       </a>

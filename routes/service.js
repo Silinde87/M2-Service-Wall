@@ -1,20 +1,180 @@
-const express = require('express');
-const router  = express.Router();
+const express = require("express");
+const router = express.Router();
 const Service = require("../models/Service.model");
 const User = require("../models/User.model");
+const data = require("../bin/seeds/data");
+const categories = data.categories;
+const { isLoggedIn } = require("../middlewares/index");
+const uploader = require("../configs/cloudinary.config");
 
-router.get('/', (req, res, next) => {
-    
-});
+router.get("/", (req, res, next) => {});
 
-router.get('/search', (req, res, next) => {
-    let { description } = req.query;
-    Service.find({description:  {$regex : `.*(?i)${description}.*`}})
-        .populate("user_id")
-        .then((services) => {
-            res.render("service/service-list", { services, description });
+/* Search bar route. Search a service by description */
+router.get("/search", (req, res, next) => {
+	const { description } = req.query;
+	Service.find({ description: { $regex: `.*(?i)${description}.*` } })
+		.populate("user_id")
+		.then((services) => {
+			res.render("service/service-list", { services, description });
 		})
 		.catch((err) => console.error(err));
-})
+});
+
+/* CREATE service routes */
+router.get("/create", isLoggedIn, (req, res, next) => {
+	res.render("service/service-create", { categories });
+});
+
+router.post("/create", uploader.single("image"), (req, res, next) => {
+	let { description, price, category, location } = req.body;
+	const user_id = req.user._id;
+	const image = req.file.path;
+	//Get category object from category name.
+	categories.forEach((cat) => {
+		if (cat.name === category) category = cat;
+	});
+
+	//temp. hardcoded location. todo: implement mapbox
+	location = ["35.6828387", "139.7594549"];
+
+	Service.create({ description, price, location, image, user_id, category })
+		.then(() => {
+			res.redirect("/");
+			//todo: Remove redirect to index and redirect to user profile
+			//res.redirect(`/profile/${user_id}`);
+		})
+		.catch((err) => console.error(err));
+});
+
+/* DELETE service route */
+router.post("/:id/delete", isLoggedIn, (req, res, next) => {
+	const service_id = req.params.id;
+	const user_id = req.user._id;
+
+	Service.findById(service_id)
+		.then((service) => {
+			//Extra validation. Compare service_id and user_id, if equal deletes service.
+			if (JSON.stringify(service.user_id) === JSON.stringify(user_id)) {
+				Service.findByIdAndRemove(service_id)
+					.then(() => {
+						res.redirect("/");
+						//todo: Remove redirect to index and redirect to user profile
+						//res.redirect(`/profile/${user_id}`);
+					})
+					.catch((err) => console.error(err));
+			}
+		})
+		.catch((err) => console.error(err));
+});
+
+/* EDIT service routes */
+router.get("/:id/edit", isLoggedIn, (req, res, next) => {
+	const { id } = req.params;
+
+	Service.findById(id)
+		.then((service) => {
+			res.render("service/service-edit", { service, categories });
+		})
+		.catch((err) => console.error(err));
+});
+
+router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
+	let { description, price, category, location } = req.body;
+	categories.forEach((cat) => {
+		if (cat.name === category) category = cat;
+	});
+
+	//temp. hardcoded location. todo: implement mapbox
+	location = ["35.6828387", "139.7594549"];
+
+	if (req.file) {
+		//Update if image
+		Service.findByIdAndUpdate(
+			req.params.id,
+			{
+				description,
+				price,
+				location,
+				image: req.file.path,
+				category,
+			},
+			{ new: true }
+		)
+			.then((service) => {
+				console.log(service);
+				res.redirect(`/service/${req.params.id}`);
+			})
+			.catch((err) => console.error(err));
+	} else {
+		//Update if no image
+		Service.findByIdAndUpdate(
+			req.params.id,
+			{
+				description,
+				price,
+				location,
+				category,
+			},
+			{ new: true }
+		)
+			.then((service) => {
+				res.redirect(`/service/${req.params.id}`);
+			})
+			.catch((err) => console.error(err));
+	}
+});
+
+/* BOOK Service route */
+router.get("/:id/book", isLoggedIn, (req, res, next) => {
+	const { id } = req.params;
+	Service.findById(id)
+		.populate("user_id")
+		.then((service) => {
+			res.render("service/service-book", service);
+		})
+		.catch((err) => console.error(err));
+});
+
+router.post("/:id/book", isLoggedIn, (req, res, next) => {
+	//todo: Implement stripe api
+	console.log("test call to stripe API");
+
+	const service_id = req.params.id;
+	const buyer_id = req.user._id;
+
+	Service.findById(service_id)
+		.populate("user_id")
+		.then((service) => {
+			const serviceName = service.description;
+			const servicePrice = service.price;
+			const serviceUserName = service.user_id.username;
+			const serviceUser_id = service.user_id._id;
+
+			//Updating buyer's bookedServices array
+			// User.findByIdAndUpdate(buyer_id, {
+			// 	$push: { bookedServices: { serviceName, servicePrice, serviceUserName, serviceUser_id } },
+			// })
+			// 	.then((user) => {})
+			// 	.catch((err) => console.error(err));
+			// //Updating seller's soldServices Array
+			// User.findByIdAndUpdate(seller_id)
+			// 	.then((user) =>{
+
+			// 	})
+			// 	.catch(err => console.error(err));
+		})
+		.catch((err) => console.error(err));
+});
+
+/* Profile view. Rendered by user id. */
+router.get("/:id", (req, res, next) => {
+	const { id } = req.params;
+	Service.findById(id)
+		.populate("user_id")
+		.then((service) => {
+			res.render("service/service", service);
+		})
+		.catch((err) => console.error(err));
+});
 
 module.exports = router;
