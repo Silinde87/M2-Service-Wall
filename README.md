@@ -81,17 +81,8 @@ e-commerce for services
     image: { type: String, default: "https://res.cloudinary.com/dkevcmz3i/image/upload/v1619125766/Service-Wall/user_avatar_xyyphc.png" },
     linkedIn_id: { type: String },
     google_id: { type: String }
-    bookedServices: [ {
-         serviceName: { type: String, required: true },
-         servicePrice: { type: String, required: true},
-         serviceUsername: { type: String, required: true},
-         serviceUser_id: { type: ObjectId, ref: 'User', required: true } // Used to create a review
-    }, default: [] ],
-    soldServices: [ {
-         serviceName: type: String, required: true,
-         servicePrice: type: String, required: true,
-         serviceUsername: type: String, required: true
-    }, default: [] ],
+    bookedServices: [ { type: ObjectId, ref: 'Service' }, default: [] ],
+    soldServices: [ { type: ObjectId, ref: 'Service' }, default: [] ],
     reviews: [ {
         username: { type: String, required: true },
         description: { type: String, required: true },

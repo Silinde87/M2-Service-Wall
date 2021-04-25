@@ -145,23 +145,32 @@ router.post("/:id/book", isLoggedIn, (req, res, next) => {
 	Service.findById(service_id)
 		.populate("user_id")
 		.then((service) => {
-			const serviceName = service.description;
-			const servicePrice = service.price;
-			const serviceUserName = service.user_id.username;
-			const serviceUser_id = service.user_id._id;
-
+			const id = service._id;
+			const seller_id = service.user_id._id;
 			//Updating buyer's bookedServices array
-			// User.findByIdAndUpdate(buyer_id, {
-			// 	$push: { bookedServices: { serviceName, servicePrice, serviceUserName, serviceUser_id } },
-			// })
-			// 	.then((user) => {})
-			// 	.catch((err) => console.error(err));
-			// //Updating seller's soldServices Array
-			// User.findByIdAndUpdate(seller_id)
-			// 	.then((user) =>{
-
-			// 	})
-			// 	.catch(err => console.error(err));
+			const updateBookedServices = User.findByIdAndUpdate(
+				buyer_id,
+				{
+					$push: { bookedServices: id },
+				},
+				{ new: true }
+			);
+			//Updating seller's soldServices Array
+			const updateSoldServices = User.findByIdAndUpdate(
+				seller_id,
+				{
+					$push: { soldServices: id },
+				},
+				{ new: true }
+			);
+			Promise.all([updateBookedServices, updateSoldServices])
+				.then(() => {
+					console.log("Arrays updated");
+					res.redirect("/");
+					//todo: Remove redirect to index and redirect to user profile
+					//res.redirect(`/profile/${user_id}`);
+				})
+				.catch((err) => console.error(err));
 		})
 		.catch((err) => console.error(err));
 });
