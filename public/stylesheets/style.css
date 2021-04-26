@@ -174,6 +174,14 @@ main {
 #location-input{
 	display: none;
 }
+.form-group{
+	flex-direction: column;
+}
+.form-group > textarea,
+#price-input,
+#category-input{
+	width: 100% !important;
+}
 
 /* SERVICE SCREEN STYLES */
 #service-container,

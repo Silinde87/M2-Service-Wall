@@ -92,7 +92,7 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 	const { id } = req.params;
 
 	//Back validation form
-	if(!description || !price || !category || !location){
+	if(!description || !price || !category || location == ''){
 		Service.findById(id)
 			.then((service) => {
 				res.render('service/service-edit', {service, categories, errorMessage: "Please fill all fields"})
@@ -122,7 +122,7 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 			{ new: true }
 		)
 			.then((service) => {
-				res.redirect(`/service/${req.params.id}`);
+				res.redirect(`/profile`);
 			})
 			.catch((err) => console.error(err));
 	} else {
@@ -138,7 +138,7 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 			{ new: true }
 		)
 			.then(() => {
-				res.redirect(`/service/${req.params.id}`);
+				res.redirect(`/profile`);
 			})
 			.catch((err) => console.error(err));
 	}
