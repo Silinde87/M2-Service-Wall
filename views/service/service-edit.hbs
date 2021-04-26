@@ -1,6 +1,6 @@
-<h1>Edit your service</h1>
-<form action="/service/{{service._id}}/edit" method="POST" enctype="multipart/form-data">
+<form class="sign-form" action="/service/{{service._id}}/edit" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
+        <h1>Edit your service</h1>
         <label for="description-input" class="form-label">Description</label>
         <textarea type="textarea" class="form-control" id="description-input"
             name="description">{{service.description}}</textarea>

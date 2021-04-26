@@ -39,9 +39,7 @@ router.post("/create", uploader.single("image"), (req, res, next) => {
 
 	Service.create({ description, price, location, image, user_id, category })
 		.then(() => {
-			res.redirect("/");
-			//todo: Remove redirect to index and redirect to user profile
-			//res.redirect(`/profile/${user_id}`);
+			res.redirect(`/profile`);
 		})
 		.catch((err) => console.error(err));
 });
@@ -57,9 +55,7 @@ router.post("/:id/delete", isLoggedIn, (req, res, next) => {
 			if (JSON.stringify(service.user_id) === JSON.stringify(user_id)) {
 				Service.findByIdAndRemove(service_id)
 					.then(() => {
-						res.redirect("/");
-						//todo: Remove redirect to index and redirect to user profile
-						//res.redirect(`/profile/${user_id}`);
+						res.redirect(`/profile`);
 					})
 					.catch((err) => console.error(err));
 			}
@@ -101,7 +97,6 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 			{ new: true }
 		)
 			.then((service) => {
-				console.log(service);
 				res.redirect(`/service/${req.params.id}`);
 			})
 			.catch((err) => console.error(err));
@@ -117,7 +112,7 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 			},
 			{ new: true }
 		)
-			.then((service) => {
+			.then(() => {
 				res.redirect(`/service/${req.params.id}`);
 			})
 			.catch((err) => console.error(err));
@@ -137,7 +132,6 @@ router.get("/:id/book", isLoggedIn, (req, res, next) => {
 
 router.post("/:id/book", isLoggedIn, (req, res, next) => {
 	//todo: Implement stripe api
-	console.log("test call to stripe API");
 
 	const service_id = req.params.id;
 	const buyer_id = req.user._id;
@@ -165,10 +159,7 @@ router.post("/:id/book", isLoggedIn, (req, res, next) => {
 			);
 			Promise.all([updateBookedServices, updateSoldServices])
 				.then(() => {
-					console.log("Arrays updated");
-					res.redirect("/");
-					//todo: Remove redirect to index and redirect to user profile
-					//res.redirect(`/profile/${user_id}`);
+					res.redirect(`/profile`);
 				})
 				.catch((err) => console.error(err));
 		})
