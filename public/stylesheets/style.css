@@ -162,6 +162,18 @@ main {
 	max-width: 700px;
 	margin-top: 10px;
 }
+.service-form{
+	margin: 10% !important;
+}
+.service-form h1{
+	margin-bottom: 20px;
+}
+.service-form button{
+	margin-top: 20px;
+}
+#location-input{
+	display: none;
+}
 
 /* SERVICE SCREEN STYLES */
 #service-container,

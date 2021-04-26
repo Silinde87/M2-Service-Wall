@@ -1,8 +1,8 @@
-<form class="sign-form" action="/service/create" method="POST" enctype="multipart/form-data">
+<form class="service-form needs-validation" action="/service/create" method="POST" enctype="multipart/form-data">
     <div class="mb-3">
         <h1>Create your service</h1>
         <label for="description-input" class="form-label">Description</label>
-        <textarea type="textarea" class="form-control" id="description-input" name="description"></textarea>
+        <textarea type="textarea" rows="8" class="form-control" id="description-input" name="description"></textarea>
     </div>
     <div class="mb-3">
         <label for="price-input" class="form-label">Price</label>
@@ -16,10 +16,10 @@
             {{/each}}
         </select>
     </div>
-    <!--todo: Implement mapbox for getting location-->
     <div class="mb-3">
         <label for="location-input" class="form-label">Location</label>
         <input type="text" class="form-control" id="location-input" name="location">
+        <div id="geocoder" class="geocoder"></div>
     </div>
     <div class="mb-3">
         <label for="file-input" class="form-label">Service image</label>
@@ -27,3 +27,6 @@
     </div>
     <button type="submit" class="button">Submit</button>
 </form>
+
+<!-- Mapbox import -->
+<script src="/javascripts/geocoder.js"></script>
