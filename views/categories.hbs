@@ -1,12 +1,11 @@
 {{#if services}}
     <div id="services-title-label">
         <h2 id="category-name-label"><a class="link-dark" href="/">Categories</a> > <span id="category-name">{{services.0.category.name}}</span></h2>
-        <p>{{services.length}} services found.</p>
+        <p>{{services.length}} services found.</p>       
     </div>
     <div id="filter-container" class="form-check form-switch">
-        <div>Rating</div>
-        <input class="form-check-input" type="checkbox" id="filter-btn">
-        <div>Price</div>
+        <div>Order by price:</div>
+        <input class="form-check-input" type="checkbox" id="filter-btn">        
     </div>
     <div id="services-container">
         {{#each services}}

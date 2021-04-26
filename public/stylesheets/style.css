@@ -69,8 +69,8 @@ main {
 }
 #filter-container{
 	display: flex;
-	justify-content: space-evenly;
-	width: 130px;
+	justify-content: flex-end;
+	margin-right: 8%;
 }
 #filter-container input{
 	margin-left: 1px;

@@ -12,8 +12,7 @@ router.get("/:name", (req, res, next) => {
 			.sort(sorting_by)
 			.populate("user_id")
 			.then((services) => {
-				console.log(services);
-				res.render("categories", { services });
+				res.json(services);
 			})
 			.catch((err) => console.error(err));
 	} else {
