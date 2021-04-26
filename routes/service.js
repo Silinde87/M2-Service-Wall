@@ -28,22 +28,27 @@ router.get("/create", isLoggedIn, (req, res, next) => {
 router.post("/create", uploader.single("image"), (req, res, next) => {
 	let { description, price, category, location } = req.body;
 	const user_id = req.user._id;
-	// let image;
-	// if(req.file)  image = req.file.path; 
+	//From String to array reversed format
+	location = location.split(",").reverse();
 
-	//Get category object from category name.
+	//Get category object through category name.
 	categories.forEach((cat) => {
 		if (cat.name === category) category = cat;
 	});
 
-	//temp. hardcoded location. todo: implement mapbox
-	location = location.split(',').reverse();
-
-	Service.create({ description, price, location, user_id, category })
-		.then(() => {
-			res.redirect(`/profile`);
-		})
-		.catch((err) => console.error(err));
+	if (req.file) {
+		Service.create({ description, price, location, image: req.file.path, user_id, category })
+			.then(() => {
+				res.redirect(`/profile`);
+			})
+			.catch((err) => console.error(err));
+	} else {
+		Service.create({ description, price, location, user_id, category })
+			.then(() => {
+				res.redirect(`/profile`);
+			})
+			.catch((err) => console.error(err));
+	}
 });
 
 /* DELETE service route */
@@ -78,13 +83,15 @@ router.get("/:id/edit", isLoggedIn, (req, res, next) => {
 
 router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 	let { description, price, category, location } = req.body;
+
+	//From String to array reversed format
+	location = location.split(",").reverse();
+
+	//Get category object through category name.
 	categories.forEach((cat) => {
 		if (cat.name === category) category = cat;
 	});
-
-	//temp. hardcoded location. todo: implement mapbox
-	location = ["35.6828387", "139.7594549"];
-
+	
 	if (req.file) {
 		//Update if image
 		Service.findByIdAndUpdate(
