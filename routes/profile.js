@@ -10,7 +10,13 @@ router.get('/', isLoggedIn, (req, res, next) => {
     .populate("user_id")
     .then(services => {
         User.findById(req.user.id)
-        .populate("soldServices bookedServices")
+        .populate({
+            path: "soldServices bookedServices", //bookedServices
+            populate:{
+                path: "user_id",
+                model: "User"
+            }
+        })
         .then((userServices) =>{
             console.log(userServices)
             res.render('auth/profile', {user: req.user, services, userServices})
