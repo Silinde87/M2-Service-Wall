@@ -162,8 +162,32 @@ main {
 	max-width: 700px;
 	margin-top: 10px;
 }
+
+/* SERVICE FORM STYLES */
+textarea,
+#price-input,
+#category-input,
+#file-input{
+	box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+	border: 1px solid #ffffff !important;
+	border-radius: 4px !important;
+	font-size: 1.7rem !important;
+	padding: 6px 20px !important;
+	color: #757575 !important;
+}
+textarea:focus{
+	border-color: none !important;
+	box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%) !important;
+}
+.mapboxgl-ctrl-geocoder--input{
+	outline: none !important;
+}
+#file-input{
+	font-size: 1.2rem !important;
+
+}
 .service-form{
-	margin: 10% !important;
+	margin: 5% 10% !important;
 }
 .service-form h1{
 	margin-bottom: 20px;
@@ -173,6 +197,20 @@ main {
 }
 #location-input{
 	display: none;
+}
+.form-group{
+	flex-direction: column;
+}
+.form-group > textarea,
+#price-input,
+#category-input{
+	width: 100% !important;
+}
+.form-group h1{
+	font-size: 2.3rem;
+}
+.form-group label{
+	font-size: 1.3rem;
 }
 
 /* SERVICE SCREEN STYLES */

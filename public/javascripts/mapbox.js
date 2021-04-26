@@ -1,4 +1,4 @@
-const main = () => {
+const mapbox = () => {
 	const mapElement = document.querySelector("#map");
 	const location = mapElement.dataset.location.split(",").reverse();
 
@@ -13,4 +13,4 @@ const main = () => {
 	var marker1 = new mapboxgl.Marker().setLngLat(location).addTo(map);
 };
 
-window.addEventListener("load", main);
+window.addEventListener("load", mapbox);

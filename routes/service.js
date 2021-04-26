@@ -27,6 +27,12 @@ router.get("/create", isLoggedIn, (req, res, next) => {
 
 router.post("/create", uploader.single("image"), (req, res, next) => {
 	let { description, price, category, location } = req.body;
+
+	//Back validation form
+	if(!description || !price || !category || !location){
+        return res.render('service/service-create', {errorMessage: "Please fill all fields"})
+    }
+
 	const user_id = req.user._id;
 	//From String to array reversed format
 	location = location.split(",").reverse();
@@ -83,6 +89,16 @@ router.get("/:id/edit", isLoggedIn, (req, res, next) => {
 
 router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 	let { description, price, category, location } = req.body;
+	const { id } = req.params;
+
+	//Back validation form
+	if(!description || !price || !category || location == ''){
+		Service.findById(id)
+			.then((service) => {
+				res.render('service/service-edit', {service, categories, errorMessage: "Please fill all fields"})
+			})
+			.catch((err) => console.error(err));
+	}
 
 	//From String to array reversed format
 	location = location.split(",").reverse();
@@ -106,7 +122,7 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 			{ new: true }
 		)
 			.then((service) => {
-				res.redirect(`/service/${req.params.id}`);
+				res.redirect(`/profile`);
 			})
 			.catch((err) => console.error(err));
 	} else {
@@ -122,7 +138,7 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 			{ new: true }
 		)
 			.then(() => {
-				res.redirect(`/service/${req.params.id}`);
+				res.redirect(`/profile`);
 			})
 			.catch((err) => console.error(err));
 	}
