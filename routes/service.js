@@ -61,15 +61,12 @@ router.post("/create", uploader.single("image"), (req, res, next) => {
 router.post("/:id/delete", isLoggedIn, (req, res, next) => {
 	const service_id = req.params.id;
 	const user_id = req.user._id;
-	console.log(service_id, user_id)
 	Service.findById(service_id)
 		.then((service) => {
-			console.log(service_id, user_id)
 			//Extra validation. Compare service_id and user_id, if equal deletes service.
 			if (JSON.stringify(service.user_id) === JSON.stringify(user_id)) {
 				Service.findByIdAndRemove(service_id)
 					.then(() => {
-						console.log(service_id)
 						res.redirect(`/profile`);
 					})
 					.catch((err) => console.error(err));

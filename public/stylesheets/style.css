@@ -67,6 +67,14 @@ main {
 	flex-wrap: wrap;
 	margin: 0 auto;
 }
+#filter-container{
+	display: flex;
+	justify-content: space-evenly;
+	width: 130px;
+}
+#filter-container input{
+	margin-left: 1px;
+}
 .category-icon {
 	height: 100px;
 	margin: 20px;
