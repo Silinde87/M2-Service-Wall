@@ -22,9 +22,6 @@
     top: 17px;
     right: 7.5px;
 }
-.pencil-img:hover{
-    color: white;
-}
 .img-pen-div{
     display: inline-block;
     position: relative;
@@ -44,3 +41,40 @@
     background: none;
     margin: 0 10% 0;
 }
+.back-img{
+    position: relative;
+}
+.fa-pen{
+    color: white;
+    display: inline;
+}
+.pencil-btn{
+    background-color: black;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 8px;
+    right: 5px;
+    border-radius: 50%;
+    border: none;
+    opacity: 0.4;
+    transition: 0.3s;
+}
+.pencil-btn:hover{opacity: 1}
+.fa-trash-alt{
+    color: white;
+    display: inline;
+}
+.trash-btn{
+    background-color: black;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 115px;
+    right: 5px;
+    border-radius: 50%;
+    border: none;
+    opacity: 0.4;
+    transition: 0.3s;
+}
+.trash-btn:hover{opacity: 1}

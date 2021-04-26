@@ -1,4 +1,4 @@
-const main = () => {
+const geocoder = () => {
 	mapboxgl.accessToken =
 		"pk.eyJ1Ijoic2lsaW5kZTg3IiwiYSI6ImNrbnc4MnYxZDBkdW4yb3RndWFrb3ByengifQ.3sbtlgTOx_O-KQVbvwKxow";
 
@@ -24,4 +24,4 @@ const main = () => {
 		locationInput.value = "";
 	});
 };
-window.addEventListener("load", main);
+window.addEventListener("load", geocoder);

@@ -6,9 +6,9 @@
         </div>
         <div class="img-pen-div">
             <img class="profile-img" src="{{user.image}}" alt="profile-img">
-            <a class="pencil-link" href=""><img class="pencil-img"
+            {{!-- <a class="pencil-link" href=""><img class="pencil-img"
                     src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619354640/Service-Wall/pencil_evuaxq.svg"
-                    alt="pencil"></a>
+                    alt="pencil"></a> --}}
         </div>
     </div>
     <div class="details">
@@ -30,24 +30,51 @@
 
         {{#if services}}
         {{#each services}}
-        <div class="card service-box">
+        <div class="card service-box back-img">
             <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <div class="card-top">
-                    <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
-                    <h5 class="card-username">{{user_id.username}}</h5>
-                </div>
-                <p class="card-text">{{description}}</p>
-                <div class="card-bottom">
-                    <div class="rate-box">
-                        <img class="card-star"
-                            src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
-                            alt="star">
-                        <p class="rate-text">{{user_id.rate}} <span>({{user_id.reviews.length}})</span></p>
+            <form action="/service/{{_id}}/edit" method="GET">
+            <button class="pencil-btn">
+                <i class="fas fa-pen"></i>
+            </button>
+            </form>
+                <button type="button" class="trash-btn" data-bs-toggle="modal" data-bs-target="#del{{_id}}">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            <!-- Modal -->
+            <div class="modal fade" id="del{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really want to delete your service? This action is permanent.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                            <form action="/service/{{_id}}/delete" method="POST">
+                                <button class="btn btn-primary" type="submit">Delete</button>
+                            </form>
+                        </div>
                     </div>
-                    <p class="card-price"><span>€ </span>{{price}}</p>
                 </div>
             </div>
+                <div class="card-body">
+                    <div class="card-top">
+                        <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
+                        <h5 class="card-username">{{user_id.username}}</h5>
+                    </div>
+                    <p class="card-text">{{description}}</p>
+                    <div class="card-bottom">
+                        <div class="rate-box">
+                            <img class="card-star"
+                                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
+                                alt="star">
+                            <p class="rate-text">{{user_id.rate}} <span>({{user_id.reviews.length}})</span></p>
+                        </div>
+                        <p class="card-price"><span>€</span>{{price}}</p>
+                    </div>
+                </div>
         </div>
         {{/each}}
         {{else}}
@@ -86,7 +113,8 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>{{description}}</td>
+                            <td style="width: 50%;">{{description}}</td>
+                            <td>{{user_id.username}} <img class="card-star" src="{{user_id.image}}" alt="img-user"></td>
                             <td>{{price}}€</td>
                         </tr>
                     </tbody>
@@ -94,8 +122,6 @@
                 {{/each}}
             </div>
         </div>
-
-
 
     </div>
     </form>
