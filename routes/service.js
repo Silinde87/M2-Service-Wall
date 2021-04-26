@@ -28,16 +28,18 @@ router.get("/create", isLoggedIn, (req, res, next) => {
 router.post("/create", uploader.single("image"), (req, res, next) => {
 	let { description, price, category, location } = req.body;
 	const user_id = req.user._id;
-	const image = req.file.path;
+	// let image;
+	// if(req.file)  image = req.file.path; 
+
 	//Get category object from category name.
 	categories.forEach((cat) => {
 		if (cat.name === category) category = cat;
 	});
 
 	//temp. hardcoded location. todo: implement mapbox
-	location = ["35.6828387", "139.7594549"];
+	location = location.split(',').reverse();
 
-	Service.create({ description, price, location, image, user_id, category })
+	Service.create({ description, price, location, user_id, category })
 		.then(() => {
 			res.redirect(`/profile`);
 		})
