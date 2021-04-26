@@ -56,9 +56,15 @@
         {{/if}}
     </div>
     <br>
-    {{!-- <form style="margin:10%" action="/profile/{{user._id}}/delete" method="POST">
-        <button class="delete-button" type="submit">Delete my account</button>
-    </form> --}}
+    <div style="margin: 10%">
+        <h2>History</h2>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-primary">Sold</button>
+            <button type="button" class="btn btn-outline-primary">Booked</button>
+        </div>
+        <ul><li>{{user.soldServices.0.description}}</li></ul>
+    </div>
+    </form>
     <button type="button" class="delete-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Delete my account
     </button>
@@ -82,4 +88,5 @@
             </div>
         </div>
     </div>
+    
 </div>

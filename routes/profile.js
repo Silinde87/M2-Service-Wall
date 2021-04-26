@@ -5,12 +5,16 @@ const User = require('../models/User.model')
 const{ isLoggedIn } = require('../middlewares/index');
 const Service = require('../models/Service.model');
 
-router.get('/', isLoggedIn, (req, res, next) => {;
+router.get('/', isLoggedIn, (req, res, next) => {
     Service.find({user_id: req.user.id})
     .populate("user_id")
     .then(services => {
-        res.render('auth/profile', {user: req.user, services})
-
+        User.findById(req.user.id)
+        .populate("soldServices")
+        .then((sold) =>{
+            console.log(sold);
+            res.render('auth/profile', {user: req.user, services})
+        })
     })
     
 });
