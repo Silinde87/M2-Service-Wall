@@ -42,16 +42,45 @@ router.post('/:id/delete', (req, res, next) =>{
         })
     })
 })
-router.get('/:id/review', isLoggedIn, (req, res, next) => {
-    //get service id through dataset at profile button
-    //find this service and show details at view
-    res.render('review');
+router.get('/:id/review/:service_id', isLoggedIn, (req, res, next) => {
+    const { id, service_id } = req.params;
+    Service.findById(service_id)
+    .populate('user_id')
+    .then((service) => {
+        res.render('review', service);
+    })
+    .catch(error => next(error));
 })
 router.post('/:id/review', isLoggedIn, (req, res, next) => {
-    //get service id through dataset at profile button
-    //find this service and show details at view
-    //check if user logged is equal than user buyer.
-    //find service user and pushes the review at post route
+    const { rate, username, description } = req.body;
+    // Find the "seller" user
+    User.findById(req.params.id)
+    .then((user) => {
+        // Calculate the new user media rate
+        let totalRates = user.reviews.length + 1;
+        let updatedRate = (user.rate + rate) / totalRates;
+        // Update new rate and pushes a review
+        User.findByIdAndUpdate(
+            req.params.id,
+            {
+                rate: updatedRate,
+                $push: {
+                    reviews: {
+                        username,
+                        description,
+                        rate
+                    }
+                }
+            },
+            { new: true }
+        )
+        .then((user) => {
+            // Show the updated user
+            console.log(user);
+            res.redirect('/');
+        })
+    })
+    .catch(error => next(error)); 
 })
 router.post('/:id', uploader.single('image'), isLoggedIn, (req, res, next) =>{
     const{username, phone_number, image} = req.body;
