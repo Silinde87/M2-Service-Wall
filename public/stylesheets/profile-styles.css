@@ -78,3 +78,19 @@
     transition: 0.3s;
 }
 .trash-btn:hover{opacity: 1}
+.table{
+    table-layout: fixed;
+}
+.table-rows td{
+   width: 100px; 
+}
+.my-score{
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: baseline;
+}
+.my-score > span{
+    vertical-align: text-bottom;
+    align-self: baseline;
+}

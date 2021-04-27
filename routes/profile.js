@@ -18,6 +18,7 @@ router.get('/', isLoggedIn, (req, res, next) => {
             }
         })
         .then((userServices) =>{
+            console.log(userServices.bookedServices[0].user_id)
             res.render('auth/profile', {user: req.user, services, userServices})
         })
     })
