@@ -18,7 +18,6 @@ router.get('/', isLoggedIn, (req, res, next) => {
             }
         })
         .then((userServices) =>{
-            console.log(userServices.bookedServices[0].user_id)
             res.render('auth/profile', {user: req.user, services, userServices})
         })
     })
@@ -58,13 +57,17 @@ router.post('/:id/review', isLoggedIn, (req, res, next) => {
     User.findById(req.params.id)
     .then((user) => {
         // Calculate the new user media rate
-        let totalRates = user.reviews.length + 1;
-        let updatedRate = (user.rate + rate) / totalRates;
+        let totalRates = (user.reviews.length + 1)*1;
+        let updatedRate;
+        if(user.rate * 1 === 0) updatedRate = rate*1;
+        else{
+            updatedRate = user.reviews.reduce( (acc, el) => acc + el.rate, rate*1 ) / totalRates;
+        }
         // Update new rate and pushes a review
         User.findByIdAndUpdate(
             req.params.id,
             {
-                rate: updatedRate,
+                rate: updatedRate.toFixed(1) * 1,
                 $push: {
                     reviews: {
                         username,
@@ -77,7 +80,7 @@ router.post('/:id/review', isLoggedIn, (req, res, next) => {
         )
         .then((user) => {
             // Show the updated user
-            console.log(user);
+            //console.log(user);
             res.redirect('/');
         })
     })

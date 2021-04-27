@@ -8,7 +8,7 @@
     <div class="stars-outer">
         <div class="stars-inner"></div>
     </div>
-    <form class="review-form needs-validation" action="/profile/{{user_id}}/review" method="POST" novalidate>
+    <form class="review-form needs-validation" action="/profile/{{user_id._id}}/review" method="POST" novalidate>
         <div class="mb-3 input-group has-validation form-group">
             <label for="rating-put" class="form-label">Rate the service</label>
             <select id="rating-input" class="form-select" name="rate" required>
