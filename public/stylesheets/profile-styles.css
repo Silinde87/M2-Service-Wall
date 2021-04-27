@@ -2,6 +2,7 @@
     width: 85px;
     position: relative;
 }
+
 .img-row{
     display: flex;
     flex-direction: row;
@@ -13,7 +14,13 @@
 .profile-info{
     display: flex;
     flex-direction: column;
-    margin: 10%;	
+    margin: 10%;
+    font-size: 1.6em;
+}
+.my-services h1{
+    font-size: 2em;
+    display: inline;
+    margin: 10% 10% 20%;
 }
 .pencil-img{
     width: 15px;
@@ -26,10 +33,6 @@
     display: inline-block;
     position: relative;
     width: 85px;
-}
-.my-services h2{
-    display: inline;
-    margin: 10%;
 }
 .sign-form{
     margin: 5% 10%;
