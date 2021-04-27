@@ -146,6 +146,7 @@ main {
 .card-star{
 	height: 15px;
 	margin-right: 3px;
+	vertical-align: middle;
 }
 .card-price{
 	font-size: 1.4rem;
