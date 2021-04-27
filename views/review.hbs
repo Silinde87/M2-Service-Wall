@@ -1,0 +1,48 @@
+<div id="review-container">
+    <div id="service-user">
+        <h3>Service username</h3>
+        <h4>{{user_id.username}}</h4>
+        <h3>What did for you?</h3>
+        <h4>{{description}}</h4>
+    </div>
+    <div class="stars-outer">
+        <div class="stars-inner"></div>
+    </div>
+    <form class="review-form needs-validation" action="/profile/{{user_id._id}}/review" method="POST" novalidate>
+        <div class="mb-3 input-group has-validation form-group">
+            <label for="rating-put" class="form-label">Rate the service</label>
+            <select id="rating-input" class="form-select" name="rate" required>
+                <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                <option value="4">⭐️⭐️⭐️⭐️</option>
+                <option value="3">⭐️⭐️⭐️</option>
+                <option value="2">⭐️⭐️</option>
+                <option value="1">⭐️</option>
+            </select>
+            <div class="invalid-feedback">
+                Please type a username.
+            </div>
+        </div>
+        <div class="mb-3 input-group has-validation form-group">
+            <label for="username-input" class="form-label">Introduce your name</label>
+            <input type="text" class="form-control" id="username-input" name="username" required>
+            <div class="invalid-feedback">
+                Please type a username.
+            </div>
+        </div>
+        <div class="mb-3 input-group has-validation form-group">
+            <label for="description-input" class="form-label">What do you think about the service?</label>
+            <textarea type="textarea" rows="5" class="form-control" id="description-input" name="description"
+                required></textarea>
+            <div class="invalid-feedback">
+                Please type a description.
+            </div>
+        </div>
+        <button type="submit" class="button">Submit</button>
+    </form>
+    {{#if errorMessage}}
+        <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
+    {{/if}}
+</div>
+
+<!-- Validation form import -->
+<script src="/javascripts/validation-script.js"></script>

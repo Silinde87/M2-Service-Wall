@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Open+Sans:wght@300&display=swap');
+
+/* VARIABLES */
+:root{
+	--background-color: #fcf8ec;
+	--button-color: #d0e8f2;
+	--text-color-light: #79a3b1;
+	--text-color-dark: #456268;
+
+}
+
 /* RESETS */
 body,
 html {
@@ -6,6 +18,7 @@ html {
 	width: 100%;
 	height: 100%;
 	font-size: 10px;
+	font-family: 'Open Sans', sans-serif;
 }
 p,
 h1 {
@@ -29,37 +42,77 @@ main {
 }
 .button{
 	width: 100%;
-	height: 30px;
+	height: 40px;
 	font-size: 1.6rem;
 	font-weight: 600;
 	border-radius: 15px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	border: none;
+	background-color: #dadada;
+	transition: all 0.2s cubic-bezier(.4,0,.2,1);
+}
+.button:hover{
+	background-color: #b6b6b6;
+	letter-spacing: 0.8px;
 }
 
 /* NAV BAR STYLES */
+header{
+	position: sticky;
+	top: 0;
+	z-index: 99;
+}
 .navbar {
-	height: 60px;
+	height: 75px;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #C1C1C1;
+	background-color: var(--text-color-light);
 }
 .navbar-brand{
-	font-size: 2rem;
-	font-weight: 700;
+	font-size: 2.4rem;
+	font-weight: 900;
+	font-family: 'Berkshire Swash', cursive;
+	color: black;
+	transition: color 0.2s;
 }
-.navbar input {
-	width: 200px;
-	height: 35px;
-	border-radius: 30px;
-	font-size: 1.4rem;
-	padding-left: 15px;
-}
-.navbar .fa-search{
-	font-size: 1.6rem;
-	margin-top: 2px;
-}
-.navbar button{
-	border-radius: 10px;
+.navbar-brand:hover{
+	color: var(--text-color-dark)
 
 }
+#search-bar-box{
+	background-color: white;
+	display: flex;
+	justify-content: flex-end;
+	border-radius: 30px;
+	width: 220px;
+	height: 35px;
+}
+#search-input {
+	font-size: 1.4rem;
+	width: 75%;
+	border: none;
+	outline: none;
+}
+#search-input:focus{
+	background-color: white;
+}
+.navbar .fa-search{
+	font-size: 2rem;
+	margin-top: 2px;
+	color: black;
+	transition: transform 0.3s;
+	padding: 0 !important;
+	margin-right: 10px;
+}
+.navbar .fa-search:hover{
+	transform: scale(1.3);
+	color: var(--text-color-dark);
+}
+#search-btn{
+	padding: 0;
+}
+
 
 /* INDEX STYLES */
 #categories-container {
@@ -67,19 +120,32 @@ main {
 	flex-wrap: wrap;
 	margin: 0 auto;
 }
+#filter-container{
+	display: flex;
+	justify-content: flex-end;
+	margin-right: 8%;
+	font-size: 1.4rem;
+}
+#filter-container input{
+	margin-left: 5px;
+}
 .category-icon {
 	height: 100px;
 	margin: 20px;
 }
-.category-container p{
+.category-name{
 	text-align: center;
 	font-size: 1.4rem;
-	margin-bottom: 8px;
+	margin-bottom: 0;
 }
 
 /* SERVICES LIST STYLES */
 #services-title-label{
-	margin: 20px 20px 0px 20px;	
+	margin: 20px 20px 0px 20px;
+	font-size: 1.4rem;
+}
+#category-name-label{
+	font-size: 2rem;
 }
 #services-container {
 	display: flex;
@@ -168,7 +234,9 @@ main {
 textarea,
 #price-input,
 #category-input,
-#file-input{
+#file-input,
+#review-container input,
+.sign-form input{
 	box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
 	border: 1px solid #ffffff !important;
 	border-radius: 4px !important;
@@ -176,7 +244,8 @@ textarea,
 	padding: 6px 20px !important;
 	color: #757575 !important;
 }
-textarea:focus{
+textarea:focus,
+.sign-form input:focus{
 	border-color: none !important;
 	box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%) !important;
 }
@@ -187,15 +256,14 @@ textarea:focus{
 	font-size: 1.2rem !important;
 
 }
-.service-form{
+.service-form,
+#review-container{
 	margin: 5% 10% !important;
 }
 .service-form h1{
 	margin-bottom: 20px;
 }
-.service-form button{
-	margin-top: 20px;
-}
+
 #location-input{
 	display: none;
 }
@@ -204,13 +272,16 @@ textarea:focus{
 }
 .form-group > textarea,
 #price-input,
-#category-input{
+#category-input,
+#review-container input,
+#rating-input{
 	width: 100% !important;
 }
 .form-group h1{
 	font-size: 2.3rem;
 }
-.form-group label{
+.form-group label,
+.sign-form label{
 	font-size: 1.3rem;
 }
 
@@ -278,6 +349,7 @@ footer {
 	align-items: center;
 	margin-top: 20px !important;
 	border-top: 1px solid #C1C1C1;
+	background-color: var(--text-color-light) !important;
 }
 footer .row {
 	width: 100%;

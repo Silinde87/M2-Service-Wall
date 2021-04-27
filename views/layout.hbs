@@ -28,13 +28,16 @@
     href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css">
 
   <header>
-    <nav class="navbar navbar-light bg-light my-0">
+    <nav class="navbar my-0">
       <div class="container-fluid">
         <a href="/" class="navbar-brand">ServiceWall</a>
         <form action="/service/search" method="GET" class="d-flex">
-          <input class="form-control me-2" name="description" type="search" placeholder="Find a service..."
-            aria-label="Search">
-          <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+          <div id="search-bar-box">
+            <input id="search-input" name="description" type="search" placeholder="Find a service..."
+              aria-label="Search">
+            <button id="search-btn" class="btn" type="submit"><i class="fas fa-search"></i></button>
+          </div>
+
         </form>
       </div>
     </nav>
@@ -44,7 +47,7 @@
     {{{body}}}
   </main>
 
-  <footer class="container bg-light mb-0 mx-0 mt-4">
+  <footer class="container mb-0 mx-0">
     <div class="row">
       <div class="col text-center">
         <a href="/">
