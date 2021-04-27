@@ -82,7 +82,7 @@
     table-layout: fixed;
 }
 .table-rows td{
-   width: 100px; 
+   width: 80%; 
 }
 .my-score{
     display: flex;
@@ -93,4 +93,8 @@
 .my-score > span{
     vertical-align: text-bottom;
     align-self: baseline;
+}
+.button-social{
+    width: 100%;
+    
 }

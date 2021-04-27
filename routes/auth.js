@@ -60,4 +60,9 @@ router.get('/logout', (req, res) => {
     res.redirect('/auth/login');
   })
 
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get("/google/callback", passport.authenticate('google', {
+    successRedirect: "/profile",
+    failureRedirect: "/auth/login"
+  }))
 module.exports = router;
