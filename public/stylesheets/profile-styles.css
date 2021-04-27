@@ -1,6 +1,7 @@
 .profile-img{
     width: 85px;
     position: relative;
+    border-radius: 50%;
 }
 
 .img-row{
