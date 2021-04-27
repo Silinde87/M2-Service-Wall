@@ -8,7 +8,7 @@ router.get("/:name", (req, res, next) => {
 	const sorting_by = req.query.sorting_by;
 
 	if (sorting_by) {
-		Service.find({ "category.name": name })
+		Service.find({ $and: [ {"category.name": name} , {'flag': true} ] } )
 			.sort(sorting_by)
 			.populate("user_id")
 			.then((services) => {
@@ -16,7 +16,7 @@ router.get("/:name", (req, res, next) => {
 			})
 			.catch((err) => console.error(err));
 	} else {
-		Service.find({ "category.name": name })
+		Service.find({ $and: [ {"category.name": name} , {'flag': true} ] } )
 			.populate("user_id")
 			.then((services) => {
 				res.render("categories", { services });

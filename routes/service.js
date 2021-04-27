@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {});
 /* Search bar route. Search a service by description */
 router.get("/search", (req, res, next) => {
 	const { description } = req.query;
-	Service.find({ description: { $regex: `.*(?i)${description}.*` } })
+	Service.find({ $and: [{ description: { $regex: `.*(?i)${description}.*` } }, { flag: true }] })
 		.populate("user_id")
 		.then((services) => {
 			res.render("service/service-list", { services, description });
@@ -29,9 +29,9 @@ router.post("/create", uploader.single("image"), (req, res, next) => {
 	let { description, price, category, location } = req.body;
 
 	//Back validation form
-	if(!description || !price || !category || !location){
-        return res.render('service/service-create', {errorMessage: "Please fill all fields"})
-    }
+	if (!description || !price || !category || !location) {
+		return res.render("service/service-create", { errorMessage: "Please fill all fields" });
+	}
 
 	const user_id = req.user._id;
 	//From String to array reversed format
@@ -81,7 +81,12 @@ router.get("/:id/edit", isLoggedIn, (req, res, next) => {
 
 	Service.findById(id)
 		.then((service) => {
-			res.render("service/service-edit", { service, categories });
+			// Validation, user is owner of the service.
+			if (JSON.stringify(req.user._id) === JSON.stringify(service.user_id)) {
+				res.render("service/service-edit", { service, categories });
+			} else {
+				res.redirect(`/service/${id}`);
+			}
 		})
 		.catch((err) => console.error(err));
 });
@@ -91,10 +96,14 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 	const { id } = req.params;
 
 	//Back validation form
-	if(!description || !price || !category || location == ''){
+	if (!description || !price || !category || location == "") {
 		Service.findById(id)
 			.then((service) => {
-				res.render('service/service-edit', {service, categories, errorMessage: "Please fill all fields"})
+				res.render("service/service-edit", {
+					service,
+					categories,
+					errorMessage: "Please fill all fields",
+				});
 			})
 			.catch((err) => console.error(err));
 	}
@@ -106,7 +115,7 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 	categories.forEach((cat) => {
 		if (cat.name === category) category = cat;
 	});
-	
+
 	if (req.file) {
 		//Update if image
 		Service.findByIdAndUpdate(
