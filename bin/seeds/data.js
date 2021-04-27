@@ -98,7 +98,6 @@ module.exports = {
 			password: "123456",
 			phone_number: "666666666",
 			reviews: [getReview()],
-			rate: getMediaRate(this.reviews),
 		},
 		{
 			username: "romanholiday",
