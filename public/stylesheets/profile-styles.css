@@ -32,7 +32,7 @@
     margin: 10%;
 }
 .sign-form{
-    margin: 50% 20% 10%;
+    margin: 40% 20% 10%;
 }
 .delete-button{
     border: none;
@@ -78,3 +78,23 @@
     transition: 0.3s;
 }
 .trash-btn:hover{opacity: 1}
+.table{
+    table-layout: fixed;
+}
+.table-rows td{
+   width: 80%; 
+}
+.my-score{
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: baseline;
+}
+.my-score > span{
+    vertical-align: text-bottom;
+    align-self: baseline;
+}
+.button-social{
+    width: 100%;
+    
+}

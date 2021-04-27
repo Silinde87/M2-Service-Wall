@@ -2,7 +2,11 @@
     <div class="img-row">
         <div>
             <h1>My profile</h1><br>
-            <span>My review score: {{user.rate}}</span>
+            <div class="my-score">
+                <span>My review score: <img class="card-star"
+                        src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
+                        alt="star"> {{user.rate}} <span>({{user.reviews.length}})</span></span>
+            </div>
         </div>
         <div class="img-pen-div">
             <img class="profile-img" src="{{user.image}}" alt="profile-img">
@@ -30,35 +34,38 @@
 
         {{#if services}}
         {{#each services}}
-        <div class="card service-box back-img">
-            <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
-            <form action="/service/{{_id}}/edit" method="GET">
-            <button class="pencil-btn">
-                <i class="fas fa-pen"></i>
-            </button>
-            </form>
+        <a href="/service/{{_id}}">
+            <div class="card service-box back-img">
+                <img class="card-image-service" src="{{image}}" class="card-img-top" alt="...">
+                <form action="/service/{{_id}}/edit" method="GET">
+                    <button class="pencil-btn">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                </form>
                 <button type="button" class="trash-btn" data-bs-toggle="modal" data-bs-target="#del{{_id}}">
                     <i class="fas fa-trash-alt"></i>
                 </button>
-            <!-- Modal -->
-            <div class="modal fade" id="del{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you really want to delete your service? This action is permanent.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
-                            <form action="/service/{{_id}}/delete" method="POST">
-                                <button class="btn btn-primary" type="submit">Delete</button>
-                            </form>
+                <!-- Modal -->
+                <div class="modal fade" id="del{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you really want to delete your service? This action is permanent.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                                <form action="/service/{{_id}}/delete" method="POST">
+                                    <button class="btn btn-primary" type="submit">Delete</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
                 <div class="card-body">
                     <div class="card-top">
                         <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
@@ -75,7 +82,9 @@
                         <p class="card-price"><span>€</span>{{price}}</p>
                     </div>
                 </div>
-        </div>
+            </div>
+
+        </a>
         {{/each}}
         {{else}}
         <p style="padding: 10px;">Nothing here. <a style="text-decoration: underline; color:blue;"
@@ -112,9 +121,12 @@
                 {{#each userServices.bookedServices}}
                 <table class="table">
                     <tbody>
-                        <tr>
-                            <td style="width: 50%;">{{description}}</td>
+                        <tr class="table-rows">
+                            <td>{{description}}</td>
                             <td>{{user_id.username}} <img class="card-star" src="{{user_id.image}}" alt="img-user"></td>
+                            <td><a href="/profile/{{user_id.id}}/review/{{_id}}"><img class="card-star"
+                                        src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
+                                        alt="star">Add a review</a></td>
                             <td>{{price}}€</td>
                         </tr>
                     </tbody>
