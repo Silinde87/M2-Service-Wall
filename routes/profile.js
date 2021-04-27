@@ -42,6 +42,17 @@ router.post('/:id/delete', (req, res, next) =>{
         })
     })
 })
+router.get('/:id/review', isLoggedIn, (req, res, next) => {
+    //get service id through dataset at profile button
+    //find this service and show details at view
+    res.render('review');
+})
+router.post('/:id/review', isLoggedIn, (req, res, next) => {
+    //get service id through dataset at profile button
+    //find this service and show details at view
+    //check if user logged is equal than user buyer.
+    //find service user and pushes the review at post route
+})
 router.post('/:id', uploader.single('image'), isLoggedIn, (req, res, next) =>{
     const{username, phone_number, image} = req.body;
     if(req.file){

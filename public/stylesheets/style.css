@@ -175,7 +175,8 @@ main {
 textarea,
 #price-input,
 #category-input,
-#file-input{
+#file-input,
+#review-container input{
 	box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
 	border: 1px solid #ffffff !important;
 	border-radius: 4px !important;
@@ -194,13 +195,15 @@ textarea:focus{
 	font-size: 1.2rem !important;
 
 }
-.service-form{
+.service-form,
+#review-container{
 	margin: 5% 10% !important;
 }
 .service-form h1{
 	margin-bottom: 20px;
 }
-.service-form button{
+.service-form button,
+.review-form > button{
 	margin-top: 20px;
 }
 #location-input{
@@ -211,7 +214,9 @@ textarea:focus{
 }
 .form-group > textarea,
 #price-input,
-#category-input{
+#category-input,
+#review-container input,
+#rating-input{
 	width: 100% !important;
 }
 .form-group h1{
