@@ -1,6 +1,7 @@
 .profile-img{
     width: 85px;
     position: relative;
+    border-radius: 50%;
 }
 .img-row{
     display: flex;
@@ -8,12 +9,20 @@
     align-content: space-evenly;
     align-items: center;
     justify-content: space-between;
- 
 }
 .profile-info{
     display: flex;
     flex-direction: column;
-    margin: 10%;	
+    margin: 10% 10% 0;
+    font-size: 1.6em;
+}
+.profile-info h1{
+    font-size: 1.6em;
+}
+.my-services h1{
+    font-size: 2.3em;
+    display: inline;
+    margin: 10% 10% 20%;
 }
 .pencil-img{
     width: 15px;
@@ -22,18 +31,108 @@
     top: 17px;
     right: 7.5px;
 }
-.pencil-img:hover{
-    color: white;
-}
 .img-pen-div{
     display: inline-block;
     position: relative;
     width: 85px;
 }
-.my-services h2{
-    display: inline;
-    margin: 10%;
-}
 .sign-form{
-    margin: 50% 20% 10%;
+    margin: 5% 10%;
+}
+.sign-form h1{
+	margin-bottom: 20px;
+}
+.delete-btn{
+    border: none;
+    color: red;
+    text-decoration: none;
+    background: none;
+    margin: 0 10% 0;
+    font-size: 1.3em;
+}
+.delete-button:hover{
+    transition: 0.3s;
+    color: #f3bda1;
+}
+.back-img{
+    position: relative;
+}
+.fa-pen{
+    color: white;
+    display: inline;
+}
+.pencil-btn{
+    background-color: black;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 8px;
+    right: 5px;
+    border-radius: 50%;
+    border: none;
+    opacity: 0.4;
+    transition: 0.3s;
+}
+.pencil-btn:hover{opacity: 1}
+.fa-trash-alt{
+    color: white;
+    display: inline;
+}
+.trash-btn{
+    background-color: black;
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 115px;
+    right: 5px;
+    border-radius: 50%;
+    border: none;
+    opacity: 0.4;
+    transition: 0.3s;
+}
+.trash-btn:hover{opacity: 1}
+.table{
+    table-layout: fixed;
+}
+.table-rows td{
+   width: 80%; 
+}
+.my-score{
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: baseline;
+    font-size: 1em;
+}
+.my-score > span{
+    vertical-align: text-bottom;
+    align-self: baseline;
+}
+.button-social{
+    width: 100%;
+}
+.details > p{
+    font-size: 0.9em;
+    font-weight: 900;
+    padding: 5px;
+}
+.links{
+    text-decoration: none;
+    font-size: 0.8em;
+    color:steelblue;;
+}
+.links:hover{
+    transition: 0.3s;
+    color: #999b84;
+}
+.history h2{
+    font-size: 1.6em;
+    margin-bottom: 20px;
+}
+.history{
+    margin: 5% 10% 10%;
+    font-size: 1.4em;
+}
+.mail-icon-prof{
+    width: 20px;
 }

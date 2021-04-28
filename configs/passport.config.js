@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const { Strategy: GoogleStrategy } = require('passport-google-oauth20');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User.model')
 const flash = require('connect-flash')
@@ -27,6 +28,27 @@ module.exports = (app) =>{
         })
         .catch(error => next(error))
     }))
+    // Google strategy - Social login
+    passport.use(new GoogleStrategy({
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: "/auth/google/callback"
+    },  (accessToken, refreshToken, profile, cb) => {
+      User.findOne({ google_id: profile.id})
+        .then(user => {
+          if (user) {
+            cb(null, user);
+            return;
+          }
+          User.create({ google_id: profile.id, email: profile. _json.email, username: profile.displayName, image: profile._json.picture})
+            .then(newUser => {
+              cb(null, newUser)
+            })
+            .catch(error => cb(error))
+        })
+        .catch(error => cb(error))
+    }
+    ))
     app.use(passport.initialize());
     app.use(passport.session());
 }

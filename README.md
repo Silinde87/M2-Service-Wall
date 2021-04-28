@@ -50,7 +50,7 @@ e-commerce for services
 |`/profile/:id/delete`|   `POST`   | Deletes an User from DB. Redirects to `login` view.    |     { user_id }    |
 |`/profile/:id/edit`|     `GET`    | Edit User screen. Renders `user-edit`.                 |                    |
 |`/profile/:id/edit`|     `POST`   | Sends User form and update User in DB. Redirects to `user-profile` view | { username, phone_number, image, password } |
-|  `/profile/:id`  |     `GET`     | Specific User screen. Renders `user` view.     |                    |
+|  `/profile`  |     `GET`     | Specific User screen. Renders `profile` view.     |                    |
 
 
 ## Models

@@ -8,6 +8,7 @@ const serviceSchema = new Schema ({
     publication_date: {type: Date, default: Date.now, required: true }, //maybe not a field
     image: { type: String, default: "https://res.cloudinary.com/dkevcmz3i/image/upload/v1619186328/Service-Wall/default_services_qoqyzb.svg" },
     user_id: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    flag: {type: Boolean, default: true}, //user eliminate = false
     category: { 
         name: { type: String, required: true },
         image: { type: String, required: true }

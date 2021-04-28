@@ -1,5 +1,5 @@
 
-<form class="sign-form" method="POST" action="/profile/{{_id}}" class="needs-validation" enctype="multipart/form-data" novalidate>
+<form method="POST" action="/profile/{{_id}}" class="needs-validation sign-form" enctype="multipart/form-data" novalidate>
 
   <div class="mb-3">
     <h1>Edit my profile</h1><br>
@@ -16,21 +16,23 @@
     <input class="form-control" type="text" placeholder="{{email}}" aria-label="Disabled input example" disabled> <br>
 
     <label for="validationCustom03" class="form-label">Phone number</label>
-    <input type="tel" class="form-control" id="validationCustom03" name="phone_number" value="{{phone_number}}">
+    <input type="number" class="form-control" id="validationCustom03" name="phone_number" value="{{phone_number}}" max="9999999999999">
     <div class="invalid-feedback">
       Please provide a valid phone number.
     </div>
   </div>
   <div class="mb-3">
   <label for="formFile" class="form-label">Upload your image</label>
-  <input class="form-control" type="file" id="formFile" name="image">
+  <input class="form-control" id="file-input" type="file" id="formFile" name="image">
 </div>
   <div class="col-12">
-    <button class="btn btn-primary" type="submit">Edit</button>
+    <button class="button" type="submit">Save changes</button>
   </div>
   {{#if errorMessage}}
+  <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
   <div>
-   <p class="error-message"> {{ errorMessage }}</p>
+   <p style="color: red" class="error-message"> {{ errorMessage }}</p>
   </div>
 {{/if}}
 </form>
+<script src="/javascripts/validation-script.js"></script>

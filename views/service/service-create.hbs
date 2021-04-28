@@ -1,29 +1,49 @@
-<h1>Create your service</h1>
-<form action="/service/create" method="POST" enctype="multipart/form-data">
-    <div class="mb-3">
+<form class="service-form needs-validation" action="/service/create" method="POST" enctype="multipart/form-data" novalidate>
+    <div class="mb-3 input-group has-validation form-group">
+        <h1>Create your service</h1>
         <label for="description-input" class="form-label">Description</label>
-        <textarea type="textarea" class="form-control" id="description-input" name="description"></textarea>
+        <textarea type="textarea" rows="5" class="form-control" id="description-input" name="description" required></textarea>
+        <div class="invalid-feedback">
+            Please type a description.
+        </div>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 input-group has-validation form-group">
         <label for="price-input" class="form-label">Price</label>
-        <input type="number" class="form-control" id="price-input" name="price">
+        <input type="number" class="form-control" id="price-input" name="price" required>
+        <div class="invalid-feedback">
+            Please type a price.
+        </div>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 input-group has-validation form-group">
         <label for="category-input" class="form-label">Category</label>
-        <select id="category-input" class="form-select" name="category">
+        <select id="category-input" class="form-select" name="category" required>
             {{#each categories}}
                 <option>{{name}}</option>
             {{/each}}
         </select>
+        <div class="invalid-feedback">
+            Please select a category.
+        </div>
     </div>
-    <!--todo: Implement mapbox for getting location-->
-    <div class="mb-3">
+    <div class="mb-3 input-group has-validation form-group">
         <label for="location-input" class="form-label">Location</label>
-        <input type="text" class="form-control" id="location-input" name="location">
+        <input type="text" class="form-control" id="location-input" name="location" required>
+        <div id="geocoder" class="geocoder"></div>
+        <div class="invalid-feedback">
+            Please type a location.
+        </div>
     </div>
     <div class="mb-3">
         <label for="file-input" class="form-label">Service image</label>
         <input class="form-control" type="file" id="file-input" name="image">
     </div>
     <button type="submit" class="button">Submit</button>
+    {{#if errorMessage}}
+        <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
+    {{/if}}
 </form>
+
+<!-- Mapbox import -->
+<script src="/javascripts/geocoder.js"></script>
+<!-- Validation form import -->
+<script src="/javascripts/validation-script.js"></script>

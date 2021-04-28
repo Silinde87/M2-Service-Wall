@@ -1,5 +1,5 @@
 
-<form class="sign-form" method="POST" action="/auth/login" class="needs-validation" novalidate>
+<form method="POST" action="/auth/login" class="needs-validation sign-form" novalidate>
 <div class="mb-3">
     <h1>Log in</h1> <br>
  <label for="validationCustomUsername" class="form-label">Email</label>
@@ -14,35 +14,15 @@
     <label for="validationCustom05" class="form-label">Password</label>
     <input type="password" class="form-control" id="validationCustom05" name="password" minlength="6" maxlength="10" required>
     <div class="invalid-feedback">
-      Please provide a password.
+      Please provide a valid password.
     </div>
   </div>
   {{#if errorMessage}}
-  <div>
-   <p style="color: red;" class="error-message"> {{errorMessage}}</p>
-  </div>
+  <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
 {{/if}}
-  <button type="submit" class="btn btn-primary">Log in</button>
+  <button type="submit" class="btn btn-primary">Log in</button><br>
+  <a href="/auth/google"><img class="button-social" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619532586/Service-Wall/btn_google_signin_light_pressed_web_2x_u3sxgr.png" alt="google-login"></a>
   <p>Not a memeber yet? <a href="/auth/signup">Join now</a></p>
 </form>
 
-<script>
-(function () {
-  'use strict'
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-})()
-</script>
+<script src="/javascripts/validation-script.js"></script>
