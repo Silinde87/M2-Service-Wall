@@ -50,23 +50,13 @@
                 </form>
                 {{!-- <button type="button" class="delete-button" data-bs-toggle="modal"
                     data-bs-target="#exampleModal"></button> --}}
-                <button type="button" class="delete-button trash-btn" id="delete-btn" data-bs-toggle="modal" data-bs-target="#del{{_id}}">
+                <button type="button" class="delete-button trash-btn" id="delete-btn" data-bs-toggle="modal"
+                    data-bs-target="#del{{_id}}">
                     <i class="fas fa-trash-alt"></i>
                 </button>
-                <script>
-                        const clickProp{{_id}} = () => {
-                        const button = document.getElementById('delete-btn');
-                        console.log(button)
-                        button.addEventListener('click', event => {
-                            console.log('stop propagation')
-                            event.preventDefault();
-                        });
-                    };
-                    window.addEventListener('load', clickProp{{_id}});
-                </script>
                 <!-- Modal -->
-                <div class="modal fade" id="del{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" {{!-- #del{{_id}}
-                    --}} aria-hidden="true">
+                <div class="modal fade" id="del{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -180,4 +170,4 @@
         </div>
     </div>
 </div>
-{{!-- <script src="/javascripts/clickProp.js"></script> --}}
+<script src="/javascripts/clickProp.js"></script>

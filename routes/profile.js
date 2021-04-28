@@ -23,7 +23,7 @@ router.get('/', isLoggedIn, (req, res, next) => {
     })
     
 });
-//validation backend, if username exists & !username
+
 router.get('/:id/edit', isLoggedIn, (req, res, next) =>{
     User.findById(req.params.id)
     .then(user => {
@@ -80,29 +80,40 @@ router.post('/:id/review', isLoggedIn, (req, res, next) => {
             { new: true }
         )
         .then((user) => {
-            // Show the updated user
-            //console.log(user);
             res.redirect('/');
         })
     })
     .catch(error => next(error)); 
 })
+//validation backend, if username exists & !username
 router.post('/:id', uploader.single('image'), isLoggedIn, (req, res, next) =>{
     const{username, phone_number, image} = req.body;
-    if(req.file){
-        User.findByIdAndUpdate(req.params.id, {username, phone_number, image: req.file.path}, {new:true})
-        .then(() => {
-            res.redirect('/profile')
+    if(!username){
+        return res.render('auth/edit', {errorMessage: "Fill username field"})
+    }
+    User.find({})
+    .then((users)=>{
+        users.forEach((user) =>{
+            if(username === user.username){
+                return res.render('auth/edit', {errorMessage: "This username already exists"})
+            }else{
+                if(req.file){
+                    User.findByIdAndUpdate(req.params.id, {username, phone_number, image: req.file.path}, {new:true})
+                    .then(() => {
+                        res.redirect('/profile')
+                    })
+                    .catch(error => next(error))
+                }else {
+                    //Update if no image
+                    User.findByIdAndUpdate(req.params.id, {username, phone_number}, {new:true})
+                        .then(() => {
+                            res.redirect('/profile');
+                        })
+                        .catch((err) => console.error(err));
+                }
+            }
         })
-        .catch(error => next(error))
-    }else {
-		//Update if no image
-		User.findByIdAndUpdate(req.params.id, {username, phone_number}, {new:true})
-			.then(() => {
-				res.redirect('/profile');
-			})
-			.catch((err) => console.error(err));
-	}
+        })
 })
 
 

@@ -29,8 +29,9 @@
     <button class="button" type="submit">Save changes</button>
   </div>
   {{#if errorMessage}}
+  <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
   <div>
-   <p class="error-message"> {{ errorMessage }}</p>
+   <p style="color: red" class="error-message"> {{ errorMessage }}</p>
   </div>
 {{/if}}
 </form>
