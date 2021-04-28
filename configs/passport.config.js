@@ -34,7 +34,6 @@ module.exports = (app) =>{
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "/auth/google/callback"
     },  (accessToken, refreshToken, profile, cb) => {
-        console.log('Google account:', profile);
       User.findOne({ google_id: profile.id})
         .then(user => {
           if (user) {
@@ -43,8 +42,6 @@ module.exports = (app) =>{
           }
           User.create({ google_id: profile.id, email: profile. _json.email, username: profile.displayName, image: profile._json.picture})
             .then(newUser => {
-                console.log(newUser)
-
               cb(null, newUser)
             })
             .catch(error => cb(error))

@@ -19,7 +19,6 @@ router.post('/signup', (req, res, next) =>{
     User.findOne({ username })
 
     .then((user) =>{
-        console.log(user)
         if(user){
             res.render('auth/signup', {errorMessage: "This email already exists"})
         }
