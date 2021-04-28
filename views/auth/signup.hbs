@@ -30,9 +30,11 @@
       <button class="button" type="submit">Join</button>
       <p>Already a member? <a href="/auth/login">Log in</a></p>
       <div class="form-separator"><span>OR</span></div>
-      <a href="/auth/google"><img class="button-social"
-          src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619532586/Service-Wall/btn_google_signin_light_pressed_web_2x_u3sxgr.png"
-          alt="google-login"></a>
+      <div id="social-group">
+        <a href="/auth/google"><img class="button-social"
+            src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619532586/Service-Wall/btn_google_signin_light_pressed_web_2x_u3sxgr.png"
+            alt="google-login"></a>
+      </div>
     </div>
     {{#if errorMessage}}
       <div>
