@@ -1,28 +1,35 @@
-
-<form method="POST" action="/auth/login" class="needs-validation sign-form" novalidate>
-<div class="mb-3">
-    <h1>Log in</h1> <br>
- <label for="validationCustomUsername" class="form-label">Email</label>
-    <div class="input-group has-validation">
-      <input type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="email" required>
-      <div class="invalid-feedback">
-        Please introduce a valid email.
+<div id="login-container">
+  <form method="POST" action="/auth/login" class="needs-validation sign-form" novalidate>
+    <div class="mb-3">
+      <h1>Log in to ServiceWall</h1>
+      <label for="validationCustomUsername" class="form-label">Email</label>
+      <div class="input-group has-validation">
+        <input type="email" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"
+          name="email" required>
+        <div class="invalid-feedback">
+          Please introduce a valid email.
+        </div>
       </div>
     </div>
-</div>
-  <div class="mb-3">
-    <label for="validationCustom05" class="form-label">Password</label>
-    <input type="password" class="form-control" id="validationCustom05" name="password" minlength="6" maxlength="10" required>
-    <div class="invalid-feedback">
-      Please provide a valid password.
+    <div class="mb-3">
+      <label for="validationCustom05" class="form-label">Password</label>
+      <input type="password" class="form-control" id="validationCustom05" name="password" minlength="6" maxlength="10"
+        required>
+      <div class="invalid-feedback">
+        Please provide a valid password.
+      </div>
     </div>
-  </div>
-  {{#if errorMessage}}
-  <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
-{{/if}}
-  <button type="submit" class="btn btn-primary">Log in</button><br>
-  <a href="/auth/google"><img class="button-social" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619532586/Service-Wall/btn_google_signin_light_pressed_web_2x_u3sxgr.png" alt="google-login"></a>
-  <p>Not a memeber yet? <a href="/auth/signup">Join now</a></p>
-</form>
-
-<script src="/javascripts/validation-script.js"></script>
+    {{#if errorMessage}}
+      <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
+    {{/if}}
+    <button type="submit" class="button">Log in</button>
+    <p>Not a memeber yet? <a href="/auth/signup">Join now</a></p>
+    <div class="form-separator"><span>OR</span></div>
+    <div id="social-group">
+      <a href="/auth/google"><img class="button-social"
+          src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619532586/Service-Wall/btn_google_signin_light_pressed_web_2x_u3sxgr.png"
+          alt="google-login"></a>      
+    </div>   
+  </form>
+  <script src="/javascripts/validation-script.js"></script>
+</div>
