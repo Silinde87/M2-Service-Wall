@@ -14,18 +14,19 @@ require('./configs/views.config')(app);
 require('./configs/locals.config')(app);
 require('./configs/session.config')(app);
 require('./configs/passport.config')(app);
-//require('./configs/passport.config')(app);
 
 const index = require("./routes/index");
 const authRouter = require("./routes/auth");
 const categoriesRouter = require("./routes/categories");
 const serviceRouter = require("./routes/service");
 const profileRouter = require("./routes/profile");
+const stripeRouter = require("./routes/stripe.router");
 
 app.use("/", index);
 app.use("/auth", authRouter);
 app.use("/categories", categoriesRouter);
 app.use("/service", serviceRouter);
 app.use("/profile", profileRouter);
+app.use("/stripe", stripeRouter);
 
 module.exports = app;
