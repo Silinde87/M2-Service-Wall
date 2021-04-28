@@ -5,30 +5,30 @@
     <div id="user-box">
         <a class="link-dark" href="/profile">
             <div id="user-top">
-                <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
-                <p id="service-username">{{user_id.username}}</p>
+                <img class="user-avatar" src="{{service.user_id.image}}" alt="user-avatar">
+                <p id="service-username">{{service.user_id.username}}</p>
             </div>
         </a>
         <div class="contact-box">
-            <a href="mailto:{{user_id.email}}">
+            <a href="mailto:{{service.user_id.email}}">
                 <img class="mail-icon" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/email_rqafsa.svg" alt="mail icon">
             </a>
-            <a href="tel:{{user_id.phone_number}}">
+            <a href="tel:{{service.user_id.phone_number}}">
                 <img class="phone-icon" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/phone-call_mzwhgm.svg" alt="phone icon">
             </a>
         </div>
     </div>
     <div id="service-book-form">
-        <form class="service-form needs-validation" action="/service/{{_id}}/book" method="POST" novalidate>
+        <form class="needs-validation service-form" action="/service/{{service._id}}/book" method="POST" novalidate>
             <div class="mb-3 input-group has-validation form-group">
                 <label for="description-input" class="form-label">What do you need?</label>
                 <textarea rows="8" type="textarea" class="form-control" id="description-input" name="description" placeholder="Describe your needs..." required></textarea>
             </div>
             <div class="mb-3 input-group has-validation form-group">
                 <label for="date-input" class="form-label">When do you need it?</label>
-                <input type="date" class="form-control" id="date-input" name="price" required>
+                <input type="date" class="form-control" id="date-input" name="date" required>
             </div>
-            <button class="button" type="submit">Pay now (€{{price}})</button>
+            <button class="button" type="submit">Pay now (€{{service.price}})</button>
             {{#if errorMessage}}
                 <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
             {{/if}} 
