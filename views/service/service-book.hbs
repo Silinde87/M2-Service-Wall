@@ -3,7 +3,7 @@
         <h2>What can I do for you?</h2>
     </div>
     <div id="user-box">
-        <a class="link-dark" href="/profile/{{user_id._id}}">
+        <a class="link-dark" href="/profile">
             <div id="user-top">
                 <img class="user-avatar" src="{{user_id.image}}" alt="user-avatar">
                 <p id="service-username">{{user_id.username}}</p>
@@ -19,16 +19,19 @@
         </div>
     </div>
     <div id="service-book-form">
-        <form action="/service/{{_id}}/book" method="POST">
-            <div class="mb-3">
+        <form class="service-form needs-validation" action="/service/{{_id}}/book" method="POST" novalidate>
+            <div class="mb-3 input-group has-validation form-group">
                 <label for="description-input" class="form-label">What do you need?</label>
-                <textarea rows="8" type="textarea" class="form-control" id="description-input" name="description" placeholder="Describe your needs..."></textarea>
+                <textarea rows="8" type="textarea" class="form-control" id="description-input" name="description" placeholder="Describe your needs..." required></textarea>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 input-group has-validation form-group">
                 <label for="date-input" class="form-label">When do you need it?</label>
-                <input type="date" class="form-control" id="date-input" name="price">
+                <input type="date" class="form-control" id="date-input" name="price" required>
             </div>
             <button class="button" type="submit">Pay now (€{{price}})</button>
+            {{#if errorMessage}}
+                <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
+            {{/if}} 
         </form>
     </div>
 

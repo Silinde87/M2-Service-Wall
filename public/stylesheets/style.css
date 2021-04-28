@@ -306,7 +306,8 @@ textarea:focus,
 #price-input,
 #category-input,
 #review-container input,
-#rating-input{
+#rating-input,
+input[type="date"]{
 	width: 100% !important;
 }
 
@@ -414,24 +415,25 @@ footer .row {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		margin-top: 5%;
 	}
 	#service-container{
 		width: 500px;
 	}
 	#services-title-label{
-		margin-top: 0px;
+		margin-top: 5%;
 		margin-left: 10%;
 		align-self: flex-start;
 	}
 	#filter-container{
 		align-self: flex-end;
 		margin-right: 10%;
+		margin-bottom: 1%;
 	}
 	#categories-container{
-		margin: 0;
+		margin: 5%;
 	}
 	#service-book-container{
+		margin: 5%;
 		width: 100% !important;
 	}
 

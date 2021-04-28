@@ -166,6 +166,13 @@ router.get("/:id/book", isLoggedIn, (req, res, next) => {
 router.post("/:id/book", isLoggedIn, (req, res, next) => {
 	//todo: Implement stripe api
 
+	const { description, price } = req.body;
+
+	//Back validation form
+	if (!description || !price) {
+		return res.render("service/service-book", { errorMessage: "Please fill all fields" });
+	}
+
 	const service_id = req.params.id;
 	const buyer_id = req.user._id;
 
