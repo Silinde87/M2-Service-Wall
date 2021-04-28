@@ -57,7 +57,7 @@ router.post("/:id", isLoggedIn, async (req, res, next) => {
 			.then((service) => {
 				console.log("BAD VALIDATION");
 				// res.redirect("/service/service-book");
-				return res.render("service/service-book", {
+				res.render("service/service-book", {
 					service,
 					errorMessage: "Please fill all fields",
 				});

@@ -27,7 +27,7 @@ router.post("/create", uploader.single("image"), (req, res, next) => {
 	let { description, price, category, location } = req.body;
 
 	//Back validation form
-	if (!description || !price || !category || !location) {
+	if (!description || !price || !category || !location || price <= 0 || price > 9999) {
 		return res.render("service/service-create", { errorMessage: "Please fill all fields" });
 	}
 
@@ -94,7 +94,7 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 	const { id } = req.params;
 
 	//Back validation form
-	if (!description || !price || !category || location == "") {
+	if (!description || !price || !category || location == "" || price <= 0 || price > 9999) {
 		Service.findById(id)
 			.then((service) => {
 				res.render("service/service-edit", {
