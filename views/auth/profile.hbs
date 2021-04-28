@@ -3,7 +3,7 @@
         <div>
             <h1>My profile</h1><br>
             <div class="my-score">
-                <span>My review score: <img class="card-star"
+                <span>My rate <img class="card-star"
                         src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
                         alt="star"> {{user.rate}} <span>({{user.reviews.length}})</span></span>
             </div>
@@ -16,18 +16,24 @@
         </div>
     </div>
     <div class="details">
-        <p>{{user.username}}</p>
-        <p>{{user.email}}</p>
-        <p>{{user.phone_number}}</p>
+        <p><img class="mail-icon-prof"
+                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619557201/Service-Wall/user_1_t14k1i.svg"
+                alt="prof-icon">{{user.username}}</p>
+        <p><img class="mail-icon-prof"
+                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/email_rqafsa.svg"
+                alt="mail icon"> {{user.email}}</p>
+        <p><img class="mail-icon-prof"
+                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/phone-call_mzwhgm.svg"
+                alt="phone icon"> {{user.phone_number}}</p>
     </div><br>
 
-    <a href="/profile/{{user._id}}/edit">Edit</a>
+    <a class="links" href="/profile/{{user._id}}/edit">Edit my profile</a>
 
-    <div><a href="/auth/logout">Log out</a></div> <br>
+    <div><a class="links" href="/auth/logout">Log out</a></div> <br>
 </div>
 <div>
     <div class="my-services">
-        <h2>My services</h2>
+        <h1>My services</h1>
     </div>
 
     <div id="services-container">
@@ -42,7 +48,10 @@
                         <i class="fas fa-pen"></i>
                     </button>
                 </form>
-                <button type="button" class="trash-btn" data-bs-toggle="modal" data-bs-target="#del{{_id}}">
+                {{!-- <button type="button" class="delete-button" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"></button> --}}
+                <button type="button" class="delete-button trash-btn" id="delete-btn" data-bs-toggle="modal"
+                    data-bs-target="#del{{_id}}">
                     <i class="fas fa-trash-alt"></i>
                 </button>
                 <!-- Modal -->
@@ -83,16 +92,16 @@
                     </div>
                 </div>
             </div>
-
         </a>
+
         {{/each}}
         {{else}}
-        <p style="padding: 10px;">Nothing here. <a style="text-decoration: underline; color:blue;"
+        <p class="add-service">Nothing here. <a style="text-decoration: underline; color:blue;"
                 href="/service/create">Add a new service</a></p>
         {{/if}}
     </div>
     <br>
-    <div style="margin: 10%">
+    <div class="history">
         <h2>History</h2>
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -137,7 +146,7 @@
 
     </div>
     </form>
-    <button type="button" class="delete-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="delete-button delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Delete my account
     </button>
     <!-- Modal -->
@@ -160,5 +169,5 @@
             </div>
         </div>
     </div>
-
 </div>
+<script src="/javascripts/clickProp.js"></script>
