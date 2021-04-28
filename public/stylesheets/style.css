@@ -77,6 +77,7 @@ header{
 	font-family: 'Berkshire Swash', cursive;
 	color: black;
 	transition: color 0.2s;
+	margin-left: 5px;
 }
 .navbar-brand:hover{
 	color: var(--text-color-dark)
@@ -89,12 +90,14 @@ header{
 	border-radius: 30px;
 	width: 220px;
 	height: 35px;
+	transition: width 0.5s;
 }
 #search-input {
 	font-size: 1.4rem;
 	width: 75%;
 	border: none;
 	outline: none;
+	transition: width 0.5s;
 }
 #search-input:focus{
 	background-color: white;
@@ -162,8 +165,13 @@ header{
 	font-size: 1.7rem;
 }
 #category-name-label,
-#services-label a{
+#services-label a,
+#category-name-label a,
+#category-name-label span,
+#login-container h1,
+#signup-container h1{
 	font-size: 2rem;
+	font-weight: 600;
 }
 #services-title-label{
 	margin: 5% 9% 0px 9%;
@@ -242,7 +250,6 @@ header{
 	flex-direction: column;
 	text-align: center;
 }
-
 #empty-list {
 	width: 70%;
 	max-width: 700px;
@@ -301,7 +308,8 @@ textarea:focus,
 #price-input,
 #category-input,
 #review-container input,
-#rating-input{
+#rating-input,
+input[type="date"]{
 	width: 100% !important;
 }
 
@@ -370,6 +378,36 @@ input[type="date"]{
 	width: 100%;
 }
 
+/* LOGIN/SIGNUP STYLES */ 
+#login-container,
+#signup-container{
+	margin: 20px 20px 0px 20px;
+}
+.sign-form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.form-separator{
+	height: 12px;
+    margin: 20px 0 32px;
+    text-align: center;
+    border-bottom: 1px solid #e4e5e7;
+	font-size: 1.4rem;
+}
+.form-separator span{
+	background-color: white;
+	padding: 0px 10px;
+}
+#social-group a{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.button-social{
+	width: 100%;
+}
+
 /* FOOTER STYLES */
 footer {
 	position: sticky;
@@ -393,7 +431,7 @@ footer .row {
 	height: 40px;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
 	body{
 		display: flex;
 		flex-direction: column;
@@ -404,16 +442,41 @@ footer .row {
 		width: 100%;
 	}
 	main {
-	  	width: 800px;
-		  display: flex;
-		  flex-direction: column;
-		  align-items: center;
-		  justify-content: center;
+	  	max-width: 800px;
+		min-width: 600px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	#service-container{
 		width: 500px;
 	}
 	#services-title-label{
-		margin-top: 0px;
+		margin-top: 5%;
+		margin-left: 10%;
+		align-self: flex-start;
 	}
+	#filter-container{
+		align-self: flex-end;
+		margin-right: 10%;
+		margin-bottom: 1%;
+	}
+	#categories-container{
+		margin: 5%;
+	}
+	#service-book-container{
+		margin: 5%;
+		width: 100% !important;
+	}
+
+	#search-bar-box:focus-within{
+		width: 500px;		
+	}
+	#search-input:focus{
+		width: 85%;
+	}
+	.button-social{
+		width: 70% !important;
+	}
+
   }
