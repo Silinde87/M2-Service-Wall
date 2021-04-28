@@ -168,7 +168,8 @@ header{
 #services-label a,
 #category-name-label a,
 #category-name-label span,
-#login-container h1{
+#login-container h1,
+#signup-container h1{
 	font-size: 2rem;
 	font-weight: 600;
 }
@@ -378,17 +379,14 @@ input[type="date"]{
 }
 
 /* LOGIN/SIGNUP STYLES */ 
-#login-container{
+#login-container,
+#signup-container{
 	margin: 20px 20px 0px 20px;
-
 }
 .sign-form{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-}
-#login-container h1{
-	margin: 0;
 }
 .form-separator{
 	height: 12px;

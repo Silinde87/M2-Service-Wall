@@ -1,42 +1,46 @@
-
-<form method="POST" action="/auth/signup" class="needs-validation sign-form" novalidate>
-  
-  <div class="mb-3">
-    <h1>Join us</h1><br>
-    <label for="validationCustomUsername" class="form-label">Username</label>
-    <div class="input-group has-validation">
-      <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" name="username" required>
-      <div class="invalid-feedback">
-        Please choose a username.
+<div id="signup-container">
+  <form method="POST" action="/auth/signup" class="needs-validation sign-form" novalidate>
+    <div class="mb-3">
+      <h1>Join ServiceWall</h1>
+      <label for="validationCustomUsername" class="form-label">Username</label>
+      <div class="input-group has-validation">
+        <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"
+          name="username" required>
+        <div class="invalid-feedback">
+          Please choose a username.
+        </div>
       </div>
     </div>
-  </div>
-  <div class="mb-3">
-    <label for="validationCustom03" class="form-label">Email</label>
-    <input type="email" class="form-control" id="validationCustom03" name="email" required>
-    <div class="invalid-feedback">
-      Please provide a valid email.
+    <div class="mb-3">
+      <label for="validationCustom03" class="form-label">Email</label>
+      <input type="email" class="form-control" id="validationCustom03" name="email" required>
+      <div class="invalid-feedback">
+        Please provide a valid email.
+      </div>
     </div>
-  </div>
-  <div class="mb-3">
-    <label for="validationCustom05" class="form-label">Password</label>
-    <input type="password" class="form-control" id="validationCustom05" name="password" minlength="6" maxlength="10" required>
-    <div class="invalid-feedback">
-      Please provide a valid password, the length should be between 6 and 10 characters.
+    <div class="mb-3">
+      <label for="validationCustom05" class="form-label">Password</label>
+      <input type="password" class="form-control" id="validationCustom05" name="password" minlength="6" maxlength="10"
+        required>
+      <div class="invalid-feedback">
+        Please provide a valid password, the length should be between 6 and 10 characters.
+      </div>
     </div>
-  </div>
-  <div class="col-12">
-    <button class="button" type="submit">Join</button>
-    <a href="/auth/google"><img class="button-social" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619532586/Service-Wall/btn_google_signin_light_pressed_web_2x_u3sxgr.png" alt="google-login"></a>
-  </div>
-  {{#if errorMessage}}
-  <div>
-   <p class="error-message"> {{ errorMessage }}</p>
-  </div>
-{{/if}}
- <p>Already a member? <a href="/auth/login">Log in</a></p>
-</form>
+    <div class="col-12">
+      <button class="button" type="submit">Join</button>
+      <p>Already a member? <a href="/auth/login">Log in</a></p>
+      <div class="form-separator"><span>OR</span></div>
+      <a href="/auth/google"><img class="button-social"
+          src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619532586/Service-Wall/btn_google_signin_light_pressed_web_2x_u3sxgr.png"
+          alt="google-login"></a>
+    </div>
+    {{#if errorMessage}}
+      <div>
+        <p class="error-message"> {{ errorMessage }}</p>
+      </div>
+    {{/if}}
+    
+  </form>
+</div>
 
 <script src="/javascripts/validation-script.js"></script>
-
-
