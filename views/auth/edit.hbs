@@ -16,7 +16,7 @@
     <input class="form-control" type="text" placeholder="{{email}}" aria-label="Disabled input example" disabled> <br>
 
     <label for="validationCustom03" class="form-label">Phone number</label>
-    <input type="tel" class="form-control" id="validationCustom03" name="phone_number" value="{{phone_number}}">
+    <input type="number" class="form-control" id="validationCustom03" name="phone_number" value="{{phone_number}}" max="9999999999999">
     <div class="invalid-feedback">
       Please provide a valid phone number.
     </div>
@@ -34,3 +34,4 @@
   </div>
 {{/if}}
 </form>
+<script src="/javascripts/validation-script.js"></script>

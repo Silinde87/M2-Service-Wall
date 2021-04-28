@@ -23,6 +23,7 @@ router.get('/', isLoggedIn, (req, res, next) => {
     })
     
 });
+//validation backend, if username exists & !username
 router.get('/:id/edit', isLoggedIn, (req, res, next) =>{
     User.findById(req.params.id)
     .then(user => {

@@ -16,9 +16,15 @@
         </div>
     </div>
     <div class="details">
-        <p><img class="mail-icon-prof" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619557201/Service-Wall/user_1_t14k1i.svg" alt="prof-icon">{{user.username}}</p>
-        <p><img class="mail-icon-prof" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/email_rqafsa.svg" alt="mail icon"> {{user.email}}</p>
-        <p><img class="mail-icon-prof" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/phone-call_mzwhgm.svg" alt="phone icon"> {{user.phone_number}}</p>
+        <p><img class="mail-icon-prof"
+                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619557201/Service-Wall/user_1_t14k1i.svg"
+                alt="prof-icon">{{user.username}}</p>
+        <p><img class="mail-icon-prof"
+                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/email_rqafsa.svg"
+                alt="mail icon"> {{user.email}}</p>
+        <p><img class="mail-icon-prof"
+                src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/phone-call_mzwhgm.svg"
+                alt="phone icon"> {{user.phone_number}}</p>
     </div><br>
 
     <a class="links" href="/profile/{{user._id}}/edit">Edit my profile</a>
@@ -42,12 +48,25 @@
                         <i class="fas fa-pen"></i>
                     </button>
                 </form>
-                <button type="button" class="trash-btn" data-bs-toggle="modal" data-bs-target="#del{{_id}}">
+                {{!-- <button type="button" class="delete-button" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"></button> --}}
+                <button type="button" class="delete-button trash-btn" id="delete-btn" data-bs-toggle="modal" data-bs-target="#del{{_id}}">
                     <i class="fas fa-trash-alt"></i>
                 </button>
+                <script>
+                        const clickProp{{_id}} = () => {
+                        const button = document.getElementById('delete-btn');
+                        console.log(button)
+                        button.addEventListener('click', event => {
+                            console.log('stop propagation')
+                            event.preventDefault();
+                        });
+                    };
+                    window.addEventListener('load', clickProp{{_id}});
+                </script>
                 <!-- Modal -->
-                <div class="modal fade" id="del{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="del{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" {{!-- #del{{_id}}
+                    --}} aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -83,8 +102,8 @@
                     </div>
                 </div>
             </div>
-
         </a>
+
         {{/each}}
         {{else}}
         <p class="add-service">Nothing here. <a style="text-decoration: underline; color:blue;"
@@ -137,7 +156,7 @@
 
     </div>
     </form>
-    <button type="button" class="delete-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="delete-button delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Delete my account
     </button>
     <!-- Modal -->
@@ -160,5 +179,5 @@
             </div>
         </div>
     </div>
-
 </div>
+{{!-- <script src="/javascripts/clickProp.js"></script> --}}
