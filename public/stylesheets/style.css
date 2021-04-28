@@ -325,7 +325,10 @@ input[type="date"]{
 #services-label h2,
 #service-username,
 #service-book-form {
-	font-size: 1.8rem;
+	font-size: 2rem;
+}
+#services-label h2{
+	font-weight: 600;
 }
 
 #service-container,
@@ -365,6 +368,7 @@ input[type="date"]{
 	min-width: 42px;
 }
 #service-username{
+	font-size: 1.8rem;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	font-weight: 600;
@@ -431,6 +435,10 @@ footer .row {
 	height: 40px;
 }
 
+.error-input{
+	border-color: #DC3444;
+}
+
 @media only screen and (min-width: 768px) {
 	body{
 		display: flex;
@@ -442,8 +450,7 @@ footer .row {
 		width: 100%;
 	}
 	main {
-	  	max-width: 800px;
-		min-width: 600px;
+		width: 800px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

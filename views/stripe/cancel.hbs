@@ -1,1 +1,22 @@
-<h1>order cancelled</h1>
+<script>
+    window.addEventListener('load', () => {
+        var myModal = new bootstrap.Modal(document.getElementById('modal-order'), {
+            keyboard: false
+        })
+        myModal.toggle();
+    });
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-order" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h2 class="modal-title" id="modal-order-text">Something went wrong with the payment.</h2>  
+      </div>
+      <div class="modal-footer">
+        <a href="/" class="btn btn-primary">Close</a>
+      </div>
+    </div>
+  </div>
+</div>
