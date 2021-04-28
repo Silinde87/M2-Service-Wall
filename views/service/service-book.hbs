@@ -19,20 +19,27 @@
         </div>
     </div>
     <div id="service-book-form">
-        <form class="needs-validation service-form" action="/service/{{service._id}}/book" method="POST" novalidate>
+        <form class="needs-validation service-form" id="book-form" action="/stripe/{{service._id}}" data-id="{{service._id}}" method="POST" novalidate>
             <div class="mb-3 input-group has-validation form-group">
                 <label for="description-input" class="form-label">What do you need?</label>
                 <textarea rows="8" type="textarea" class="form-control" id="description-input" name="description" placeholder="Describe your needs..." required></textarea>
+                <div class="invalid-feedback">
+                    Please type a description.
+                </div>
             </div>
             <div class="mb-3 input-group has-validation form-group">
                 <label for="date-input" class="form-label">When do you need it?</label>
                 <input type="date" class="form-control" id="date-input" name="date" required>
+                <div class="invalid-feedback">
+                    Please pick a date.
+                </div>            
             </div>
-            <button class="button" type="submit">Pay now (€{{service.price}})</button>
+            <button class="button" id="checkout-button" type="submit">Pay now (€{{service.price}})</button>
             {{#if errorMessage}}
                 <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
             {{/if}} 
         </form>
     </div>
-
 </div>
+
+<script src="/javascripts/stripe.js"></script>
