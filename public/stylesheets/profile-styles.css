@@ -59,6 +59,10 @@
 .sign-form h1 {
 	margin-bottom: 20px;
 }
+#edit-profile-form h1{
+	font-size: 2.4rem;
+	font-weight: 600;
+}
 .delete-btn {
 	border: none;
 	color: red;
