@@ -1,3 +1,4 @@
+//Geocoder configuration
 const geocoder = () => {
 	mapboxgl.accessToken =
 		"pk.eyJ1Ijoic2lsaW5kZTg3IiwiYSI6ImNrbnc4MnYxZDBkdW4yb3RndWFrb3ByengifQ.3sbtlgTOx_O-KQVbvwKxow";

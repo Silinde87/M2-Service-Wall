@@ -6,6 +6,7 @@ const Service = require("../models/Service.model");
 const User = require("../models/User.model");
 const stripe = require("stripe")(process.env.STRIPE_SK);
 
+//Route if stripe payment succeds
 router.get("/success/:id", (req, res) => {
 	const service_id = req.params.id;
 	const buyer_id = req.user._id;
@@ -33,7 +34,6 @@ router.get("/success/:id", (req, res) => {
 			);
 			Promise.all([updateBookedServices, updateSoldServices])
 				.then( () => {
-					console.log("DB UPDATED");
 					res.render("stripe/success");
 				})
 				.catch((err) => console.error(err));
@@ -41,11 +41,12 @@ router.get("/success/:id", (req, res) => {
 		.catch((err) => console.error(err));
 });
 
-
+//Route if stripe payment fails
 router.get("/cancel", (req, res) => {
 	res.render("stripe/cancel");
 });
 
+//STRIPE route.
 router.post("/:id", isLoggedIn, async (req, res, next) => {
 	const { id } = req.params;
 	const { description, date } = req.body;
@@ -55,9 +56,7 @@ router.post("/:id", isLoggedIn, async (req, res, next) => {
 		Service.findById(id)
 			.populate("user_id")
 			.then((service) => {
-				console.log("BAD VALIDATION");
-				// res.redirect("/service/service-book");
-				return res.render("service/service-book", {
+				res.render("service/service-book", {
 					service,
 					errorMessage: "Please fill all fields",
 				});

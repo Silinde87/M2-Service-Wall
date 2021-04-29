@@ -7,8 +7,6 @@ const categories = data.categories;
 const { isLoggedIn } = require("../middlewares/index");
 const uploader = require("../configs/cloudinary.config");
 
-router.get("/", (req, res, next) => {});
-
 /* Search bar route. Search a service by description */
 router.get("/search", (req, res, next) => {
 	const { description } = req.query;
@@ -29,7 +27,7 @@ router.post("/create", uploader.single("image"), (req, res, next) => {
 	let { description, price, category, location } = req.body;
 
 	//Back validation form
-	if (!description || !price || !category || !location) {
+	if (!description || !price || !category || !location || price <= 0 || price > 9999) {
 		return res.render("service/service-create", { errorMessage: "Please fill all fields" });
 	}
 
@@ -96,7 +94,7 @@ router.post("/:id/edit", uploader.single("image"), (req, res, next) => {
 	const { id } = req.params;
 
 	//Back validation form
-	if (!description || !price || !category || location == "") {
+	if (!description || !price || !category || location == "" || price <= 0 || price > 9999) {
 		Service.findById(id)
 			.then((service) => {
 				res.render("service/service-edit", {
@@ -161,59 +159,6 @@ router.get("/:id/book", isLoggedIn, (req, res, next) => {
 			res.render("service/service-book", { service });
 		})
 		.catch((err) => console.error(err));
-});
-
-router.post("/:id/book", isLoggedIn, (req, res, next) => {
-	// //todo: Implement stripe api
-	// const { id } = req.params;
-	// console.log(id);
-	// const { description, date } = req.body;
-
-	// //Back validation form
-	// if (!description || !date || new Date(date) <= new Date()) {
-	// 	Service.findById(id)
-	// 		.populate("user_id")
-	// 		.then((service) => {
-	// 			console.log(service);
-	// 			return res.render("service/service-book", {
-	// 				service,
-	// 				errorMessage: "Please fill all fields",
-	// 			});
-	// 		})
-	// 		.catch((err) => console.error(err));
-	// } else {
-	// 	const service_id = req.params.id;
-	// 	const buyer_id = req.user._id;
-
-	// 	Service.findById(service_id)
-	// 		.populate("user_id")
-	// 		.then((service) => {
-	// 			const id = service._id;
-	// 			const seller_id = service.user_id._id;
-	// 			//Updating buyer's bookedServices array
-	// 			const updateBookedServices = User.findByIdAndUpdate(
-	// 				buyer_id,
-	// 				{
-	// 					$push: { bookedServices: id },
-	// 				},
-	// 				{ new: true }
-	// 			);
-	// 			//Updating seller's soldServices Array
-	// 			const updateSoldServices = User.findByIdAndUpdate(
-	// 				seller_id,
-	// 				{
-	// 					$push: { soldServices: id },
-	// 				},
-	// 				{ new: true }
-	// 			);
-	// 			Promise.all([updateBookedServices, updateSoldServices])
-	// 				.then(() => {
-	// 					//res.redirect(`/profile`);
-	// 				})
-	// 				.catch((err) => console.error(err));
-	// 		})
-	// 		.catch((err) => console.error(err));
-	// }
 });
 
 /* Profile view. Rendered by user id. */
