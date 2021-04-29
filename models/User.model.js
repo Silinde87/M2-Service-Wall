@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-    
+const userSchema = new Schema({   
     username: { type: String },
     email: { type: String, unique: true, required: true },
     password: { type: String, minLength: 6 },
@@ -19,7 +18,7 @@ const userSchema = new Schema({
         username: { type: String, required: true },
         description: { type: String, required: true },
         rate: { type: Number, min: 0, max: 5, required: true },
-        date: { type: Date, default: Date.now, required: true }, //maybe not a field   
+        date: { type: Date, default: Date.now, required: true },
     } ]
 })
 

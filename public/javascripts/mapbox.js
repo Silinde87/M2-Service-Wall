@@ -1,3 +1,4 @@
+//Mapbox configuration
 const mapbox = () => {
 	const mapElement = document.querySelector("#map");
 	const location = mapElement.dataset.location.split(",").reverse();

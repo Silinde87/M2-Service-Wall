@@ -4,17 +4,19 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const saltRounds = 10;
 const User = require("../models/User.model");
-const ensureLogin = require("connect-ensure-login");
+//const ensureLogin = require("connect-ensure-login");
 const { isLoggedOut } = require("../middlewares/index");
-const nodemailer = require("nodemailer");
 const async = require("async");
 const crypto = require("crypto");
-const smtpTransport = require("nodemailer-smtp-transport");
-const xoauth2 = require("xoauth2");
-const { constants } = require("buffer");
+const transporter = require('../configs/nodemailer.config');
+const flash = require('express-flash');
+//const smtpTransport = require("nodemailer-smtp-transport");
+//const { constants } = require("buffer");
 
-router.get("/signup", isLoggedOut, (req, res) => {
-  res.render("auth/signup");
+router.use(flash())
+//SIGNUP routes
+router.get('/signup', isLoggedOut, (req, res) => {
+    res.render('auth/signup')
 });
 router.post("/signup", (req, res, next) => {
   const { username, email, password } = req.body;
@@ -24,38 +26,33 @@ router.post("/signup", (req, res, next) => {
       errorMessage: "Please fill all fields",
     });
   }
-  User.findOne({ username })
+  User.findOne({ $or:[{email}, {username}] })
   .then((user) => {
     if (user) {
-      res.render("auth/signup", { errorMessage: "This email already exists" });
+      res.render("auth/signup", { errorMessage: "This user already exists" });
     }
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashPassword = bcrypt.hashSync(password, salt);
+
     console.log({ username, email, password });
 
     User.create({ username, email, password: hashPassword })
-      .then((newUser) => {
-        if ({ username }) {
-          res.render("auth/signup", {
-            errorMessage: "This username already exists",
-          });
-        }
+    .then((newUser) => {
         req.login(newUser, (error) => {
-          if (error) next(error);
-          return res.redirect("/profile");
+            if(error) next(error);
+            return res.redirect('/profile')
         });
-      })
-      .catch((error) => {
+    })
+    .catch((error) =>{
         console.error(error);
-        res.render("auth/signup", {
-          errorMessage: "Ups! Something went wrong. Please try again",
-        });
-      });
-  });
+        res.render('auth/signup', {errorMessage: "Ups! Something went wrong. Please try again"});
+    });
+});
 });
 
-router.get("/login", isLoggedOut, (req, res) => {
-  res.render("auth/login", { errorMessage: req.flash("error")[0] });
+//LOGIN routes
+router.get('/login', isLoggedOut, (req, res) =>{
+    res.render('auth/login', {errorMessage: req.flash('error')[0]});
 });
 
 router.post(
@@ -73,13 +70,9 @@ router.get("/logout", (req, res) => {
   res.redirect("/auth/login");
 });
 
-router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-router.get(
-  "/google/callback",
-  passport.authenticate("google", {
+router.get("/google",passport.authenticate("google", { scope: ["profile", "email"] }));
+
+router.get("/google/callback", passport.authenticate("google", {
     successRedirect: "/profile",
     failureRedirect: "/auth/login",
   })
@@ -111,20 +104,20 @@ router.post("/forgot", (req, res, next) => {
           user.save(function (err) {
             done(err, token, user);
           });
-          console.log("user found");
+          console.log("user found", user.email);
         });
       },
       function (token, user, done) {
-        const transport = nodemailer.createTransport(smtpTransport, {
-          service: "Gmail",
-          auth: {
-            xoauth2: xoauth2.createXOAuth2Generator,
-            user: "abc@gmail.com",
-          },
-        });
+        // const transport = nodemailer.createTransport(smtpTransport, {
+        //   service: "Gmail",
+        //   auth: {
+        //     xoauth2: xoauth2.createXOAuth2Generator,
+        //     user: "abc@gmail.com",
+        //   },
+        // });
         let mailOptions = {
           to: user.email,
-          from: "passwordreset@demo.com",
+          from: "taia.makh@gmail.com",
           subject: "Node.js Password Reset",
           text:
             "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
@@ -137,7 +130,7 @@ router.post("/forgot", (req, res, next) => {
             "If you did not request this, please ignore this email and your password will remain unchanged.\n",
         };
 
-        transport.sendMail(mailOptions, (err) => {
+        transporter.sendMail(mailOptions, (err) => {
           req.flash(
             "info",
             "An e-mail has been sent to " +
@@ -154,4 +147,18 @@ router.post("/forgot", (req, res, next) => {
     }
   );
 });
+
+//LOGOUT route
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/auth/login');
+});
+
+//SOCIAL routes
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get("/google/callback", passport.authenticate('google', {
+    successRedirect: "/profile",
+    failureRedirect: "/auth/login"
+}));
+
 module.exports = router;

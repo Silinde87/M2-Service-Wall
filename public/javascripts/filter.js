@@ -1,6 +1,6 @@
-//True: Price || false: Rate
+//Renders categories view with sort filter applied. By price or auto.
 const filter = () => {
-	const apiHandler = new APIHandler("http://localhost:3000");
+	const apiHandler = new APIHandler("https://servicewall.herokuapp.com");
 
 	if (document.querySelector("#category-name") || document.querySelector("#filter-btn")) {
 		const category = document.querySelector("#category-name").innerText;
@@ -10,7 +10,6 @@ const filter = () => {
 			if (filterBtn.checked) filter = "price";
 			else filter = "auto";
 
-			//Renders categories view with sort filter applied. By price or auto.
 			apiHandler.sortCategory(category, filter).then((res) => {
 				document.querySelector("#services-container").innerHTML = "";
 				res.data.forEach((service) => {
