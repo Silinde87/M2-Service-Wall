@@ -12,8 +12,9 @@ module.exports = (app) =>{
         .then((user) => cb(null, user))
         .catch(error => cb(error))
     })
-    app.use(flash())
 
+    app.use(flash())
+    
     passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password', passReqToCallback: true }, (req, email, password, next ) =>{
         User.findOne({ email })
         .then(user =>{
