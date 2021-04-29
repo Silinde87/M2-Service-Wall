@@ -3,6 +3,7 @@ const router = express.Router();
 const Service = require("../models/Service.model");
 const User = require("../models/User.model");
 
+//Renders categories view with or without filter applied
 router.get("/:name", (req, res, next) => {
 	const { name } = req.params;
 	const sorting_by = req.query.sorting_by;

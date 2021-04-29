@@ -5,13 +5,14 @@ const User = require('../models/User.model')
 const{ isLoggedIn } = require('../middlewares/index');
 const Service = require('../models/Service.model');
 
+//PROFILE view
 router.get('/', isLoggedIn, (req, res, next) => {
     Service.find({user_id: req.user.id})
     .populate("user_id")
     .then(services => {
         User.findById(req.user.id)
         .populate({
-            path: "soldServices bookedServices", //bookedServices
+            path: "soldServices bookedServices",
             populate:{
                 path: "user_id",
                 model: "User"
@@ -24,6 +25,7 @@ router.get('/', isLoggedIn, (req, res, next) => {
     
 });
 
+//EDIT PROFILE route
 router.get('/:id/edit', isLoggedIn, (req, res, next) =>{
     User.findById(req.params.id)
     .then(user => {
@@ -34,6 +36,8 @@ router.get('/:id/edit', isLoggedIn, (req, res, next) =>{
         console.error(error)
     })
 })
+
+//DELETE PROFILE route
 router.post('/:id/delete', (req, res, next) =>{
     User.findByIdAndRemove(req.params.id)
     .then(() =>{
@@ -43,6 +47,8 @@ router.post('/:id/delete', (req, res, next) =>{
         })
     })
 })
+
+//REVIEW routes
 router.get('/:id/review/:service_id', isLoggedIn, (req, res, next) => {
     const { id, service_id } = req.params;
     Service.findById(service_id)
@@ -85,9 +91,11 @@ router.post('/:id/review', isLoggedIn, (req, res, next) => {
     })
     .catch(error => next(error)); 
 })
-//validation backend, if username exists & !username
+
+//EDIT PROFILE route
 router.post('/:id', uploader.single('image'), isLoggedIn, (req, res, next) =>{
     const{username, phone_number, image} = req.body;
+    //validation backend, if username exists & !username
     if(!username){
         return res.render('auth/edit', {errorMessage: "Fill username field"})
     }
@@ -113,7 +121,7 @@ router.post('/:id', uploader.single('image'), isLoggedIn, (req, res, next) =>{
                 }
             }
         })
-        })
+    })
 })
 
 

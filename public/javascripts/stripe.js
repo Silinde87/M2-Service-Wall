@@ -4,10 +4,8 @@ var stripe = Stripe(
 );
 let checkoutForm = document.getElementById("book-form");
 let service_id = checkoutForm.dataset.id;
-console.log(checkoutForm);
 
 checkoutForm.addEventListener("submit", function (e) {
-	//Create a new Checkout Session using the server-side endpoint you
 	fetch(`/stripe/${service_id}`, {
 		method: "POST",
         headers: { 'Content-Type': 'application/json' },
@@ -23,9 +21,7 @@ checkoutForm.addEventListener("submit", function (e) {
 			return stripe.redirectToCheckout({ sessionId: session.id });
 		})
 		.then(function (result) {
-			// If `redirectToCheckout` fails due to a browser or network
-			// error, you should display the localized error message to your
-			// customer using `error.message`.
+			// If `redirectToCheckout` fails due to a browser or network.
 			if (result.error) {
 				alert(result.error.message);
 			}
