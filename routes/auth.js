@@ -29,13 +29,8 @@ router.post('/signup', (req, res, next) =>{
 
         User.create({ username, email, password: hashPassword })
         .then((newUser) => {
-            // if({username}){
-            //     res.render('auth/signup', {errorMessage: "This username already exists"});
-            // }
-            console.log('USER CREATED', newUser) 
             req.login(newUser, (error) => {
-                //if(error) next(error);
-                console.log('error', error);
+                if(error) next(error);
                 return res.redirect('/profile')
             });
         })
