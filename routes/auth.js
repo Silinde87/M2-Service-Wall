@@ -17,11 +17,11 @@ router.post('/signup', (req, res, next) =>{
     if(!username || !email || !password){
         return res.render('auth/signup', {errorMessage: "Please fill all fields"});
     }
-    User.findOne({ username })
+    User.findOne({ $or: [ { username },{ email } ] })
 
     .then((user) =>{
         if(user){
-            res.render('auth/signup', {errorMessage: "This email already exists"});
+            res.render('auth/signup', {errorMessage: "This user already exists"});
         }
         //Encrypting the password
         const salt = bcrypt.genSaltSync(saltRounds)
