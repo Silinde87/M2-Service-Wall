@@ -6,6 +6,8 @@ const userSchema = new Schema({
     username: { type: String },
     email: { type: String, unique: true, required: true },
     password: { type: String, minLength: 6 },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
     phone_number: { type: String },
     rate: { type: Number, min: 0, max: 5, default: 0 },
     image: { type: String, default: "https://res.cloudinary.com/dkevcmz3i/image/upload/v1619125766/Service-Wall/user_avatar_xyyphc.png" },
