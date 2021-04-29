@@ -31,16 +31,26 @@ router.post("/signup", (req, res, next) => {
     if (user) {
       res.render("auth/signup", { errorMessage: "This user already exists" });
     }
-    const salt = bcrypt.genSaltSync(saltRounds);
-    const hashPassword = bcrypt.hashSync(password, salt);
+    User.findOne({ $or: [ { username },{ email } ] })
 
-    console.log({ username, email, password });
+    .then((user) =>{
+        if(user){
+            res.render('auth/signup', {errorMessage: "This user already exists"});
+        }
+        //Encrypting the password
+        const salt = bcrypt.genSaltSync(saltRounds)
+        const hashPassword = bcrypt.hashSync(password, salt);
 
-    User.create({ username, email, password: hashPassword })
-    .then((newUser) => {
-        req.login(newUser, (error) => {
-            if(error) next(error);
-            return res.redirect('/profile')
+        User.create({ username, email, password: hashPassword })
+        .then((newUser) => {
+            req.login(newUser, (error) => {
+                if(error) next(error);
+                return res.redirect('/profile')
+            });
+        })
+        .catch((error) =>{
+            console.error(error);
+            res.render('auth/signup', {errorMessage: "Ups! Something went wrong. Please try again"});
         });
     })
     .catch((error) =>{
