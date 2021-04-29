@@ -41,7 +41,7 @@ router.get("/success/:id", (req, res) => {
 						to: req.user.email, // email from signup form
 						subject: "Bienvenido a mi aplicación",
 						text: "Bienvenido",
-						html: "<h1>Hello!</h1>",
+						html: "<h1>Hello! Thanks for your order!🧡</h1>",
 					  })
 						.then(() => {
 						  return res.render("stripe/success");
