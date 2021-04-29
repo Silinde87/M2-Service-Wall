@@ -94,7 +94,7 @@ router.post('/:id/review', isLoggedIn, (req, res, next) => {
 
 //EDIT PROFILE route
 router.post('/:id', uploader.single('image'), isLoggedIn, (req, res, next) =>{
-    const{username, phone_number, image} = req.body;
+    const{username, phone_number} = req.body;
     //validation backend, if username exists & !username
     if(!username){
         return res.render('auth/edit', {errorMessage: "Fill username field"})
@@ -102,7 +102,7 @@ router.post('/:id', uploader.single('image'), isLoggedIn, (req, res, next) =>{
     User.find({})
     .then((users)=>{
         users.forEach((user) =>{
-            if(username === user.username){
+            if(username === user.username && username !== req.user.username){
                 return res.render('auth/edit', {errorMessage: "This username already exists"})
             }else{
                 if(req.file){
