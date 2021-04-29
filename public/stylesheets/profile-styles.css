@@ -194,5 +194,17 @@
     #profile-services-container{
         width: 100%;
     }
+	.col-description {
+		width: 55%;
+	}
+	.col-username {
+		width: 20%;
+	}
+	.col-review {
+		width: 15%;
+	}
+	.col-price {
+		width: 10%;
+	}
 
 }
