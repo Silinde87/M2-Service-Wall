@@ -33,7 +33,8 @@ router.post('/signup', (req, res, next) =>{
                 res.render('auth/signup', {errorMessage: "This username already exists"});
             } 
             req.login(newUser, (error) => {
-                if(error) next(error);
+                //if(error) next(error);
+                console.log(error);
                 return res.redirect('/profile')
             });
         })
