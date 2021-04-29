@@ -214,7 +214,7 @@ header{
 	border-radius: 50%;
 }
 .card-text{
-	height: 54px;
+	height: 56px;
 	overflow: hidden;
   	text-overflow: ellipsis;
 }
