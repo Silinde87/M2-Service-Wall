@@ -1,5 +1,5 @@
 <h1>Reset password</h1>
-<form action="/auth/reset/:id" method="POST">
+<form action="/auth/reset/{{user.resetPasswordToken}}" method="POST">
 <label for="password">Password</label>
 <input type="password" name="password" id="password" placeholder="New password" value='' autofocus><br>
 <label for="confirm">Confirm Password</label>
