@@ -121,9 +121,6 @@ router.post('/:id', uploader.single('image'), isLoggedIn, (req, res, next) =>{
                 }
             }
         })
-    })
+        })
 })
-
-
-
 module.exports = router;

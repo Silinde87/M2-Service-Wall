@@ -5,6 +5,7 @@ const router = express.Router();
 const Service = require("../models/Service.model");
 const User = require("../models/User.model");
 const stripe = require("stripe")(process.env.STRIPE_SK);
+const transporter = require('../configs/nodemailer.config');
 
 //Route if stripe payment succeds
 router.get("/success/:id", (req, res) => {
@@ -34,7 +35,21 @@ router.get("/success/:id", (req, res) => {
 			);
 			Promise.all([updateBookedServices, updateSoldServices])
 				.then( () => {
-					res.render("stripe/success");
+					console.log(req.user.email)
+					transporter.sendMail({
+						from: process.env.EMAIL_USER,
+						to: req.user.email, // email from signup form
+						subject: "Bienvenido a mi aplicación",
+						text: "Bienvenido",
+						html: "<h1>Hello!</h1>",
+					  })
+						.then(() => {
+						  return res.render("stripe/success");
+						})
+						.catch(error => {
+						  console.log(error);
+						  return res.redirect('/profile');
+						})
 				})
 				.catch((err) => console.error(err));
 		})

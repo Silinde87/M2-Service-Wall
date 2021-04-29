@@ -15,6 +15,7 @@ require('./configs/locals.config')(app);
 require('./configs/session.config')(app);
 require('./configs/passport.config')(app);
 
+
 const index = require("./routes/index");
 const authRouter = require("./routes/auth");
 const categoriesRouter = require("./routes/categories");
