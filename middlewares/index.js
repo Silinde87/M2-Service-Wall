@@ -2,8 +2,8 @@
 module.exports = {
     isLoggedIn: (req, res, next) => {
       if (req.isAuthenticated()) {
-        req.app.locals.login = true;
-        req.app.locals.img = req.user.image;
+          req.app.locals.login = true;
+          req.app.locals.img = req.user.image;
         next();
       } else {
         req.app.locals.login = false;
@@ -12,10 +12,20 @@ module.exports = {
     },
     isLoggedOut: (req, res, next) => {
       if(req.isAuthenticated()){
+          req.app.locals.login = true;
+          req.app.locals.img = req.user.image;
+          res.redirect('/profile');
+      }else{
+        req.app.locals.login = false;
+        next();
+      }
+    },
+    profileLoggedIn: (req, res, next) =>{
+      if(req.user){
         req.app.locals.login = true;
         req.app.locals.img = req.user.image;
-        res.redirect('/profile');
-      } else {
+        next();
+      }else{
         req.app.locals.login = false;
         next();
       }

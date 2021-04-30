@@ -121,9 +121,13 @@
 }
 .col-description {
 	width: 40%;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }
 .col-username {
 	width: 35%;
+	text-align: end;
 }
 .col-review {
 	width: 15%;
@@ -133,6 +137,12 @@
 .col-price {
 	width: 10%;
 	text-align: end;
+}
+.col-desc-booked{
+	width: 80%;
+}
+.col-price-booked{
+	width: 20%;
 }
 .my-score {
 	display: flex;
