@@ -66,7 +66,7 @@ header{
 	z-index: 99;
 }
 .navbar {
-	height: 75px;
+	height: fit-content;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #C1C1C1;
 	background-color: var(--text-color-light);
@@ -78,6 +78,7 @@ header{
 	color: black;
 	transition: color 0.2s;
 	margin-left: 6px;
+	padding: 8px 0px;
 }
 .navbar-brand:hover{
 	color: var(--text-color-dark)
@@ -450,8 +451,6 @@ footer {
 	text-align: center;
 	margin-top: 20px !important;
 	margin-bottom: 5px;
-	/* position: sticky;
-	bottom: 70px; */
 	background-color: white;
 	width: 100%;
 }
@@ -474,7 +473,24 @@ footer .row {
 	border-color: #DC3444;
 }
 
-@media only screen and (max-width: 500px) {
+@media (max-width: 330px){
+	.navbar > div{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+}
+@media (max-width: 370px){
+	.navbar-brand{
+		font-size: 2.2rem;
+	}
+	#search-bar-box{
+		width: 180px;
+	}
+
+}
+
+@media (max-width: 500px) {
 	#credits{
 		max-width: 200px;
 		align-self: center;
@@ -483,7 +499,7 @@ footer .row {
 	}
 }
 
-@media only screen and (min-width: 768px) {
+@media (min-width: 768px) {
 	body{
 		display: flex;
 		flex-direction: column;
@@ -535,6 +551,4 @@ footer .row {
 	.button-social{
 		width: 70% !important;
 	}
-	
-
-  }
+}
