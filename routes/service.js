@@ -4,11 +4,11 @@ const Service = require("../models/Service.model");
 const User = require("../models/User.model");
 const data = require("../bin/seeds/data");
 const categories = data.categories;
-const { isLoggedIn } = require("../middlewares/index");
+const { isLoggedIn, profileLoggedIn } = require("../middlewares/index");
 const uploader = require("../configs/cloudinary.config");
 
 /* Search bar route. Search a service by description */
-router.get("/search", (req, res, next) => {
+router.get("/search", profileLoggedIn,(req, res, next) => {
 	const { description } = req.query;
 	Service.find({ $and: [{ description: { $regex: `.*(?i)${description}.*` } }, { flag: true }] })
 		.populate("user_id")
@@ -166,7 +166,7 @@ router.get("/:id/book", isLoggedIn, (req, res, next) => {
 });
 
 /* Profile view. Rendered by user id. */
-router.get("/:id", (req, res, next) => {
+router.get("/:id", profileLoggedIn, (req, res, next) => {
 	const { id } = req.params;
 	Service.findById(id)
 		.populate("user_id")

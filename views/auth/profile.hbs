@@ -121,8 +121,8 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>{{description}}</td>
-                            <td>{{price}}€</td>
+                            <td class="col-desc-booked">{{description}}</td>
+                            <td class="col-price-booked">{{price}}€</td>
                         </tr>
                     </tbody>
                 </table>
@@ -134,7 +134,7 @@
                     <tbody>
                         <tr class="table-rows">
                             <td class="col-description">{{description}}</td>
-                            <td class="col-userame">{{user_id.username}} <img class="user-avatar" src="{{user_id.image}}" alt="img-user"></td>
+                            <td class="col-username">{{user_id.username}} <img class="user-avatar" src="{{user_id.image}}" alt="img-user"></td>
                             <td class="col-review"><a href="/profile/{{user_id.id}}/review/{{_id}}"><img class="card-star"
                                         src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
                                         alt="star">Add a review</a>

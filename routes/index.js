@@ -1,16 +1,13 @@
 const express = require("express");
-const { users } = require("../bin/seeds/data");
 const router = express.Router();
-const { showProfilePic } = require("../middlewares/index")
+const { profileLoggedIn  } = require("../middlewares/index");
 
 const data = require("../bin/seeds/data");
 const categories = data.categories;
 
 /* GET home page */
-router.get("/", (req, res, next) => {
+router.get("/", profileLoggedIn, (req, res) => {
 	res.render("index", { categories, user: req.user });
 });
-
-
 
 module.exports = router;
