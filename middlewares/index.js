@@ -7,7 +7,6 @@ module.exports = {
         next();
       } else {
         req.app.locals.login = false;
-
         res.redirect("/auth/login");
       }
     },

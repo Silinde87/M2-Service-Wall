@@ -167,7 +167,7 @@
 }
 .links:hover {
 	transition: 0.3s;
-	color: #999b84;
+	color: #999b84 !important;
 }
 .history h2 {
 	font-size: 2em;
