@@ -5,7 +5,6 @@ class APIHandler {
 	}
 
 	sortCategory(category, filter) {
-		console.log('base url', this.baseURL);
 		return axios.get(`${this.baseURL}/categories/${category}?sorting_by=${filter}`);
 	}
 }

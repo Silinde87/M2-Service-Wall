@@ -128,10 +128,11 @@
 .col-review {
 	width: 15%;
 	font-size: 1.2rem;
-	text-align: center;
+	text-align: end;
 }
 .col-price {
 	width: 10%;
+	text-align: end;
 }
 .my-score {
 	display: flex;
@@ -161,8 +162,7 @@
 }
 .links {
 	text-decoration: none;
-	font-size: 0.8em;
-	color: steelblue;
+	color: steelblue !important;
 	margin-top: 15px;
 }
 .links:hover {
@@ -185,6 +185,9 @@
 .modal-body p {
 	font-size: 1.8rem;
 	text-align: center;
+}
+.add-service{
+	font-size: 1.4em;
 }
 
 @media only screen and (min-width: 768px) {

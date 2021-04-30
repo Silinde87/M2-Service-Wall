@@ -97,8 +97,9 @@
 
             {{/each}}
         {{else}}
-        <p class="add-service">Nothing here. <a style="text-decoration: underline; color:blue;"
-                href="/service/create">Add a new service</a></p>
+        <p class="add-service">Nothing here. 
+            <a class="links" href="/service/create">Add a new service</a>
+        </p>
         {{/if}}
     </div>
     <div class="profile-separator"></div>
@@ -133,10 +134,11 @@
                     <tbody>
                         <tr class="table-rows">
                             <td class="col-description">{{description}}</td>
-                            <td class="col-userame">{{user_id.username}} <img class="card-star" src="{{user_id.image}}" alt="img-user"></td>
+                            <td class="col-userame">{{user_id.username}} <img class="user-avatar" src="{{user_id.image}}" alt="img-user"></td>
                             <td class="col-review"><a href="/profile/{{user_id.id}}/review/{{_id}}"><img class="card-star"
                                         src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619263462/Service-Wall/star_vnwttt.svg"
-                                        alt="star">Add a review</a></td>
+                                        alt="star">Add a review</a>
+                            </td>
                             <td class="col-price">{{price}}€</td>
                         </tr>
                     </tbody>
