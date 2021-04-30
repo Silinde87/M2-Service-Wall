@@ -21,7 +21,8 @@ router.get("/:name", (req, res, next) => {
 			.populate("user_id")
 			.then((services) => {
 				const protocol = req.protocol;
-				res.render("categories", { services, protocol });
+				const secure = req.secure;
+				res.render("categories", { services, protocol, secure });
 			})
 			.catch((err) => console.error(err));
 	}
