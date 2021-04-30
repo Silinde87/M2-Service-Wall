@@ -299,7 +299,8 @@ textarea:focus,
 	margin-bottom: 20px;
 }
 
-#location-input{
+#location-input,
+#protocol{
 	display: none;
 }
 .form-group{

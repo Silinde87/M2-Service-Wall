@@ -1,6 +1,7 @@
 //Renders categories view with sort filter applied. By price or auto.
 const filter = () => {
-	const apiHandler = new APIHandler("http://servicewall.herokuapp.com");
+    const PROTOCOL_URL = document.querySelector('#protocol').dataset.protocol;
+	const apiHandler = new APIHandler(`${PROTOCOL_URL}://servicewall.herokuapp.com`);
 
 	if (document.querySelector("#category-name") || document.querySelector("#filter-btn")) {
 		const category = document.querySelector("#category-name").innerText;

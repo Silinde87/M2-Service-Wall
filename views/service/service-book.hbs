@@ -3,12 +3,10 @@
         <h2>What can I do for you?</h2>
     </div>
     <div id="user-box">
-        <a class="link-dark" href="/profile">
-            <div id="user-top">
-                <img class="user-avatar" src="{{service.user_id.image}}" alt="user-avatar">
-                <p id="service-username">{{service.user_id.username}}</p>
-            </div>
-        </a>
+        <div id="user-top">
+            <img class="user-avatar" src="{{service.user_id.image}}" alt="user-avatar">
+            <p id="service-username">{{service.user_id.username}}</p>
+        </div>
         <div class="contact-box">
             <a href="mailto:{{service.user_id.email}}">
                 <img class="mail-icon" src="https://res.cloudinary.com/dkevcmz3i/image/upload/v1619360460/Service-Wall/email_rqafsa.svg" alt="mail icon">
