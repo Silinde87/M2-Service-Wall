@@ -35,19 +35,18 @@ router.get("/success/:id", (req, res) => {
 			);
 			Promise.all([updateBookedServices, updateSoldServices])
 				.then( () => {
-					console.log(req.user.email)
 					transporter.sendMail({
 						from: process.env.EMAIL_USER,
 						to: req.user.email, // email from signup form
-						subject: "Bienvenido a mi aplicación",
-						text: "Bienvenido",
-						html: "<h1>Hello! Thanks for your order!🧡</h1>",
+						subject: "Thank you for your order",
+						text: "Welcome",
+						html: "<h1>Hello! The freelancer will contact you soon!🧡</h1>",
 					  })
 						.then(() => {
 						  return res.render("stripe/success");
 						})
 						.catch(error => {
-						  console.log(error);
+						  console.error(error);
 						  return res.redirect('/profile');
 						})
 				})

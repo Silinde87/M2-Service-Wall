@@ -102,7 +102,6 @@ router.post("/forgot", (req, res, next) => {
 
           user.save(function (err) {
             done(err, token, user);
-            console.log("user found", user.email);
           })
         })
         .catch(err =>{ 
@@ -136,7 +135,6 @@ router.post("/forgot", (req, res, next) => {
               " with further instructions."
           );
           done(err, "done");
-          console.log("done");
         });
       },
     ],
@@ -158,7 +156,6 @@ router.get("/reset/:token", (req, res) => {
         return res.redirect("/forgot");
       }
       res.render("auth/reset", { user });
-      console.log(user.resetPasswordToken);
     })
     .catch((error) => {
       console.error(error);
@@ -192,7 +189,6 @@ router.post("/reset/:token", (req, res) => {
           user.save(function (err) {
             req.logIn(user, (err) => {
               done(err, user);
-              console.log("linea 163");
             });
           });
         });
@@ -211,7 +207,6 @@ router.post("/reset/:token", (req, res) => {
         transporter.sendMail(mailOptions, (err) => {
           req.flash("success", "Success! Your password has been changed.");
           done(err);
-          console.log("password changed!");
         });
       },
     ],
