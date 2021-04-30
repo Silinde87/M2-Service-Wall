@@ -38,6 +38,7 @@
     </div>
     {{#if errorMessage}}
       <div>
+        <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
         <p class="error-message"> {{ errorMessage }}</p>
       </div>
     {{/if}}

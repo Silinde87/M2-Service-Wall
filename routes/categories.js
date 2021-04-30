@@ -20,7 +20,8 @@ router.get("/:name", (req, res, next) => {
 		Service.find({ $and: [ {"category.name": name} , {'flag': true} ] } )
 			.populate("user_id")
 			.then((services) => {
-				res.render("categories", { services });
+				const protocol = req.protocol;
+				res.render("categories", { services, protocol });
 			})
 			.catch((err) => console.error(err));
 	}

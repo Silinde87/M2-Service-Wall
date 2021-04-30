@@ -1,12 +1,19 @@
-<form action="/auth/forgot" method="POST">
-<label for="email">Email</label>
-<input type="email" name="email" id="email" autofocus>
-<button>Reset password</button>
+<div id="signup-container">
+<form action="/auth/forgot" method="POST" class="needs-validation sign-form">
+<div class="mb-3">
+<h1>Recover your password</h1>
+  <label for="validationCustomUsername" class="form-label">Email</label>
+  <div class="input-group has-validation">
+    <input type="email" class="form-control" name="email" id="email" id="validationCustomUsername" autofocus required>
+    <div class="invalid-feedback">
+      Please introduce a valid email.
+    </div>
+  </div>
+  </div>
+  {{#if errorMessage}}
+      <script>document.querySelector(".needs-validation").classList.add("was-validated");</script>
+  {{/if}}
+  <button type="submit" class="button">Reset password</button>
 </form>
-
-  {{!-- form(method='POST')
-    legend Forgot Password
-    .form-group
-      label(for='email') Email
-      input.form-control(type='text', name='email', autofocus)
-    button.btn.btn-primary(type='submit') Reset Password --}}
+</div>
+<script src="/javascripts/validation-script.js"></script>
