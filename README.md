@@ -128,9 +128,9 @@ Online marketplace for freelance digital services where you can buy and sell gig
 
 URls for the project repo and deploy
 [Link Repo](https://github.com/Silinde87/M2-Service-Shop)
-[Link Deploy]()
+[Link Deploy](https://servicewall.herokuapp.com/)
 
 ### Slides
 
 URls for the project presentation
-[Link Prezi.com]()
+[Link Prezi.com](https://prezi.com/p/4-gs9t5wyxux/?present=1)

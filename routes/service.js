@@ -156,6 +156,10 @@ router.get("/:id/book", isLoggedIn, (req, res, next) => {
 	Service.findById(id)
 		.populate("user_id")
 		.then((service) => {
+			//Validation user is hiring his own service
+			if(JSON.stringify(req.user._id) === JSON.stringify(service.user_id._id)){
+				res.render("service/service", service);
+			}
 			res.render("service/service-book", { service });
 		})
 		.catch((err) => console.error(err));
