@@ -2,7 +2,6 @@ const async = require("async");
 const crypto = require("crypto");
 const transporter = require("../configs/nodemailer.config");
 const flash = require("express-flash");
-//const { constants } = require("buffer");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -10,6 +9,7 @@ const passport = require("passport");
 const saltRounds = 10;
 const User = require("../models/User.model");
 const { isLoggedOut } = require("../middlewares/index");
+
 //SIGNUP routes
 
 router.use(flash());
@@ -169,6 +169,7 @@ router.post("/reset/:token", (req, res) => {
   async.waterfall(
     [
       function (done) {
+        if((req.body.password).length < 6) return res.redirect(`/auth/reset/${req.params.token}`)
         User.findOne({
           resetPasswordToken: req.params.token,
           resetPasswordExpires: { $gt: Date.now() },
