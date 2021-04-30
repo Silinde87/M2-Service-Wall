@@ -435,8 +435,6 @@ input[type="date"]{
 	font-size: 1.4rem;
 }
 
-
-
 /* FOOTER STYLES */
 footer {
 	position: sticky;
@@ -445,9 +443,21 @@ footer {
 	min-height: 70px;
 	display: flex;
 	align-items: center;
-	margin-top: 20px !important;
 	border-top: 1px solid #C1C1C1;
 	background-color: var(--text-color-light) !important;
+}
+#credits{
+	text-align: center;
+	margin-top: 20px !important;
+	margin-bottom: 5px;
+	/* position: sticky;
+	bottom: 70px; */
+	background-color: white;
+	width: 100%;
+}
+#credits p{
+	font-size: 1.4rem;
+	font-weight: 600;
 }
 footer .row {
 	width: 100%;
@@ -464,11 +474,19 @@ footer .row {
 	border-color: #DC3444;
 }
 
+@media only screen and (max-width: 500px) {
+	#credits{
+		max-width: 200px;
+		align-self: center;
+		position: relative;
+		bottom: 0px;
+	}
+}
+
 @media only screen and (min-width: 768px) {
 	body{
 		display: flex;
 		flex-direction: column;
-		
 		align-items: center;		
 	}
 	header{
