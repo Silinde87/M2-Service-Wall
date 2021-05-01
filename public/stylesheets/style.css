@@ -492,7 +492,7 @@ footer .row {
 
 @media (max-width: 500px) {
 	#credits{
-		max-width: 200px;
+		max-width: 220px;
 		align-self: center;
 		position: relative;
 		bottom: 0px;
